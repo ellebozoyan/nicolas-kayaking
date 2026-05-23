@@ -1,0 +1,1649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Nicolas's Ocean Pedal Kayaking Playbook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream: #f8f4ea;
+    --cream-deep: #ede4ce;
+    --navy: #1e3a5f;
+    --navy-deep: #0f2944;
+    --harbor: #4a90b8;
+    --harbor-light: #b0d4e6;
+    --signal-red: #c73e3a;
+    --signal-red-deep: #9c2a26;
+    --brass: #d4a857;
+    --brass-deep: #a37e3a;
+    --signal-yellow: #f5d547;
+    --sail-white: #fbfaf2;
+    --rope-tan: #c9a87a;
+    --ink: #15263b;
+    --ink-soft: #4a6580;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Plus Jakarta Sans', -apple-system, sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.55;
+    font-size: 17px;
+    background-image: 
+      radial-gradient(circle at 20% 10%, rgba(74,144,184,0.10), transparent 40%),
+      radial-gradient(circle at 80% 60%, rgba(212,168,87,0.08), transparent 40%);
+    min-height: 100vh;
+  }
+  h1,h2,h3,h4{font-family:'Fraunces', Georgia, serif; color: var(--ink); line-height:1.15;}
+  h1{font-size:clamp(2.2rem, 5vw, 3.6rem); font-weight:800; letter-spacing:-0.02em;}
+  h2{font-size:clamp(1.6rem, 3.5vw, 2.4rem); font-weight:700; letter-spacing:-0.015em;}
+  h3{font-size:clamp(1.2rem, 2.5vw, 1.5rem); font-weight:700;}
+  h4{font-size:1.05rem; font-weight:700; color: var(--navy);}
+  p{margin: 0 0 0.85em 0;}
+  a{color: var(--navy); text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 3px;}
+  a:hover{color: var(--navy-deep);}
+
+  .top-banner{
+    background: linear-gradient(135deg, var(--navy), var(--navy-deep));
+    color: var(--cream);
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .top-banner::before{
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse at 30% 80%, rgba(74,144,184,0.4), transparent 60%),
+      radial-gradient(ellipse at 70% 20%, rgba(245,213,71,0.15), transparent 60%);
+    pointer-events: none;
+  }
+  .top-banner h1{color: var(--cream); position: relative;}
+  .top-banner .sub{
+    color: var(--harbor-light);
+    font-family:'Fraunces', serif;
+    font-style: italic;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    margin-top: 0.5rem;
+    position: relative;
+  }
+  .ball-icon{
+    display: inline-block;
+    width: 40px; height: 40px;
+    background: var(--sail-white);
+    clip-path: polygon(50% 5%, 95% 95%, 5% 95%);
+    vertical-align: middle;
+    margin-left: 0.4rem;
+    position: relative;
+  }
+
+  nav.tabs{
+    background: var(--cream-deep);
+    border-bottom: 3px solid var(--navy);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .tab-list{
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 0.5rem;
+    gap: 0.25rem;
+    flex-wrap: nowrap;
+    min-width: max-content;
+  }
+  .tab-btn{
+    background: transparent;
+    border: none;
+    padding: 0.95rem 0.9rem;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--ink-soft);
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -3px;
+    transition: all 0.18s;
+    white-space: nowrap;
+  }
+  .tab-btn:hover{color: var(--navy); background: rgba(74,144,184,0.12);}
+  .tab-btn.active{
+    color: var(--navy-deep);
+    border-bottom-color: var(--signal-yellow);
+    background: var(--cream);
+  }
+
+  main{max-width: 1200px; margin: 0 auto; padding: 2rem 1.25rem 4rem;}
+
+  .panel{display:none; animation: fadeIn 0.4s ease;}
+  .panel.active{display:block;}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+  .section-intro{
+    background: var(--cream-deep);
+    border-left: 4px solid var(--signal-red);
+    padding: 1.4rem 1.6rem;
+    border-radius: 0 14px 14px 0;
+    margin-bottom: 2rem;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--ink);
+  }
+
+  .card-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 1.1rem;
+    margin: 1.2rem 0;
+  }
+  .card{
+    background: var(--cream-deep);
+    border-radius: 18px;
+    padding: 1.4rem;
+    border: 2px solid transparent;
+    transition: transform 0.18s, box-shadow 0.18s;
+    box-shadow: 0 1px 3px rgba(15,41,68,0.05);
+  }
+  .card:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(30,58,95,0.12);
+    border-color: var(--harbor-light);
+  }
+  .card-icon{
+    width: 56px; height: 56px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, var(--harbor), var(--navy));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    color: var(--cream);
+    margin-bottom: 0.9rem;
+  }
+  .card h3{margin-bottom: 0.5rem;}
+  .card .summary{color: var(--ink-soft); font-size: 0.96rem;}
+
+  .cue{
+    display: block;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 0.92rem;
+    color: var(--navy);
+    margin-top: 0.65rem;
+    padding: 0.4rem 0.75rem;
+    background: rgba(74, 144, 184, 0.16);
+    border-left: 3px solid var(--harbor);
+    border-radius: 0 8px 8px 0;
+    line-height: 1.35;
+  }
+  .cue::before{content: '💬'; margin-right: 0.4rem; font-style: normal;}
+  .legend-item .cue, .warmup-item .cue{font-size: 0.84rem; margin-top: 0.4rem; padding: 0.3rem 0.6rem;}
+  .blk-cue{
+    display: block;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 0.82rem;
+    color: var(--signal-red-deep);
+    margin-top: 0.25rem;
+  }
+  .blk-cue::before{content: '💬 '; font-style: normal;}
+
+  .video-link{
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: var(--signal-red);
+    color: var(--cream);
+    padding: 0.45rem 0.95rem;
+    border-radius: 999px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    text-decoration: none;
+    margin-top: 0.9rem;
+    box-shadow: 0 2px 6px rgba(199,62,58,0.25);
+  }
+  .video-link:hover{color: var(--cream); background: var(--signal-red-deep);}
+  .wk-vid{
+    display: inline-block;
+    background: var(--cream);
+    color: var(--signal-red-deep);
+    padding: 0.3rem 0.7rem;
+    border: 1.5px solid var(--signal-red);
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-decoration: none;
+    margin-top: 0.7rem;
+  }
+  .wk-vid:hover{background: var(--signal-red); color: var(--cream);}
+  .game-vid{
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    margin-top: 0.6rem;
+    background: transparent;
+    color: var(--signal-red-deep);
+    padding: 0.3rem 0.7rem;
+    border: 1.5px solid var(--signal-red);
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+  .game-vid:hover{background: var(--signal-red); color: var(--cream);}
+
+  .boat-wrap{
+    background: var(--cream-deep);
+    padding: 1.5rem;
+    border-radius: 18px;
+    margin: 1rem 0 2rem;
+  }
+  .boat-wrap svg{width:100%; height:auto; max-height:460px; display:block;}
+  .boat-title{
+    font-family: 'Fraunces', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--navy-deep);
+    margin-bottom: 0.4rem;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+  }
+  .boat-pill{
+    background: var(--brass);
+    color: var(--navy-deep);
+    padding: 0.2rem 0.7rem;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+  .boat-pill.c420{background: var(--harbor); color: var(--cream);}
+  .boat-svg .water{fill: var(--harbor); opacity: 0.18;}
+  .boat-svg .hull{fill: var(--brass); stroke: var(--navy-deep); stroke-width: 2;}
+  .boat-svg .hull-c420{fill: var(--sail-white); stroke: var(--navy-deep); stroke-width: 2;}
+  .boat-svg .sail{fill: var(--sail-white); stroke: var(--navy-deep); stroke-width: 1.5;}
+  .boat-svg .spar{stroke: var(--navy-deep); stroke-width: 3; fill: none;}
+  .boat-svg .line{stroke: var(--ink-soft); stroke-width: 1.5; fill: none; stroke-dasharray: 4,3;}
+  .boat-svg .rope{stroke: var(--rope-tan); stroke-width: 2; fill: none;}
+  .boat-svg .foil{fill: var(--navy); opacity: 0.8;}
+  .boat-svg .pointer{stroke: var(--signal-red); stroke-width: 1.5; fill: none;}
+  .boat-svg .pointer-dot{fill: var(--signal-red);}
+  .boat-svg .label{font-family: 'Plus Jakarta Sans', sans-serif; font-size: 11px; font-weight: 700; fill: var(--navy-deep);}
+  .boat-svg .label-sm{font-family: 'Plus Jakarta Sans', sans-serif; font-size: 10px; font-weight: 600; fill: var(--ink-soft);}
+  .legend-item{
+    background: var(--cream-deep);
+    padding: 1rem 1.2rem;
+    border-radius: 12px;
+    border-left: 3px solid var(--harbor);
+  }
+  .legend-item strong{color: var(--navy); display: block; margin-bottom: 0.3rem;}
+  .court-legend{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 0.7rem;
+  }
+
+  .format-card{
+    background: var(--cream-deep);
+    border-radius: 20px;
+    padding: 1.6rem;
+    margin: 1.2rem 0;
+    border-top: 5px solid var(--harbor);
+  }
+  .format-card.fmt-A{border-top-color: var(--brass);}
+  .format-card.fmt-B{border-top-color: var(--harbor);}
+  .format-card.fmt-C{border-top-color: var(--signal-red);}
+  .format-card.fmt-D{border-top-color: #6b4f8f;}
+  .format-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 0.7rem;
+  }
+  .format-pill{
+    display: inline-block;
+    padding: 0.35rem 0.85rem;
+    background: var(--harbor);
+    color: var(--cream);
+    border-radius: 999px;
+    font-weight: 800;
+    font-size: 0.85rem;
+    letter-spacing: 0.04em;
+  }
+  .fmt-A .format-pill{background: var(--brass); color: var(--navy-deep);}
+  .fmt-B .format-pill{background: var(--harbor); color: var(--cream);}
+  .fmt-C .format-pill{background: var(--signal-red); color: var(--cream);}
+  .fmt-D .format-pill{background: #6b4f8f; color: var(--cream);}
+  .format-versions{display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-top: 1rem;}
+  @media (max-width: 720px){.format-versions{grid-template-columns: 1fr;}}
+  .version-block{background: var(--cream); padding: 1.1rem 1.2rem; border-radius: 14px;}
+  .version-block h4{
+    color: var(--navy);
+    margin-bottom: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .version-block .duration{
+    background: var(--navy);
+    color: var(--cream);
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 700;
+  }
+  .block-list{list-style: none; padding: 0; margin: 0;}
+  .block-list li{padding: 0.55rem 0; border-bottom: 1px dashed var(--cream-deep); display: flex; gap: 0.7rem;}
+  .block-list li:last-child{border-bottom: none;}
+  .blk-time{
+    background: var(--cream-deep);
+    color: var(--ink-soft);
+    padding: 0.15rem 0.5rem;
+    border-radius: 6px;
+    font-size: 0.74rem;
+    font-weight: 700;
+    flex-shrink: 0;
+    height: fit-content;
+    min-width: 48px;
+    text-align: center;
+  }
+  .blk-name{font-weight: 700; color: var(--navy-deep); font-size: 0.94rem;}
+  .blk-desc{display: block; font-size: 0.86rem; color: var(--ink-soft); margin-top: 0.15rem;}
+
+  .phase-header{
+    background: linear-gradient(135deg, var(--navy), var(--navy-deep));
+    color: var(--cream);
+    padding: 1.2rem 1.5rem;
+    border-radius: 14px;
+    margin: 2rem 0 1rem;
+  }
+  .phase-header h3{color: var(--cream); margin-bottom: 0.3rem;}
+  .phase-header p{margin: 0; color: var(--harbor-light); font-family: 'Fraunces', serif; font-style: italic;}
+  .week-grid{display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 0.75rem;}
+  .week-card{
+    background: var(--cream-deep);
+    padding: 0.95rem 1.1rem;
+    border-radius: 12px;
+    border-left: 4px solid var(--harbor);
+  }
+  .week-card.fmt-A{border-left-color: var(--brass);}
+  .week-card.fmt-B{border-left-color: var(--harbor);}
+  .week-card.fmt-C{border-left-color: var(--signal-red);}
+  .week-card.fmt-D{border-left-color: #6b4f8f;}
+  .wk-num{
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    color: var(--signal-red-deep);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+  .fmt-pill{padding: 0.05rem 0.45rem; border-radius: 5px; font-size: 0.7rem;}
+  .fmt-pill.A{background: var(--brass); color: var(--navy-deep);}
+  .fmt-pill.B{background: var(--harbor); color: var(--cream);}
+  .fmt-pill.C{background: var(--signal-red); color: var(--cream);}
+  .fmt-pill.D{background: #6b4f8f; color: var(--cream);}
+  .week-card h4{color: var(--navy-deep); margin: 0.15rem 0 0.4rem; font-size: 1rem;}
+  .week-card p{margin: 0; font-size: 0.86rem; color: var(--ink-soft);}
+
+  .warmup-grid{display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.85rem; margin: 1.2rem 0 2rem;}
+  .warmup-item{
+    background: var(--cream-deep);
+    padding: 1rem 1.15rem;
+    border-radius: 12px;
+    border-left: 4px solid var(--brass);
+  }
+  .warmup-item h4{color: var(--navy); margin-bottom: 0.35rem; font-size: 1rem;}
+  .warmup-item p{margin: 0; font-size: 0.86rem; color: var(--ink-soft);}
+
+  .pull-quote{
+    background: linear-gradient(135deg, var(--navy), var(--navy-deep));
+    color: var(--cream);
+    padding: 1.6rem 2rem;
+    border-radius: 16px;
+    margin: 2rem 0;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 1.15rem;
+    text-align: center;
+    position: relative;
+  }
+  .pull-quote::before, .pull-quote::after{
+    content: '"';
+    color: var(--signal-yellow);
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 0.4;
+  }
+  .pull-quote::before{margin-right: 0.4rem;}
+  .pull-quote::after{margin-left: 0.4rem;}
+
+  .story-page{
+    display: flex;
+    align-items: center;
+    gap: 1.4rem;
+    background: var(--cream-deep);
+    padding: 1.5rem;
+    border-radius: 16px;
+    margin: 1rem 0;
+  }
+  .story-page .img{
+    width: 80px; height: 80px;
+    background: linear-gradient(135deg, var(--harbor), var(--navy));
+    border-radius: 16px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2rem;
+  }
+  .story-page .text{font-size: 1.2rem; font-family: 'Fraunces', serif; font-weight: 500;}
+  .story-num{
+    display: block;
+    font-size: 0.78rem;
+    color: var(--signal-red-deep);
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.25rem;
+  }
+
+  .song-card{background: linear-gradient(135deg, #fffaeb, var(--cream)); border: 2px solid var(--cream-deep);}
+  .song-card .song-id{font-size: 0.72rem; color: var(--ink-soft); font-family: 'Courier New', monospace; margin-top: 0.5rem; opacity: 0.65;}
+  .play-button{
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    background: linear-gradient(135deg, var(--navy), var(--navy-deep));
+    color: var(--cream);
+    padding: 0.6rem 1.2rem;
+    border-radius: 999px;
+    font-size: 0.92rem;
+    font-weight: 700;
+    text-decoration: none;
+    margin-top: 0.8rem;
+    box-shadow: 0 3px 10px rgba(30,58,95,0.25);
+  }
+  .play-button:hover{color: var(--signal-yellow);}
+  .play-button .icon{
+    font-size: 1.05rem;
+    background: var(--signal-yellow);
+    color: var(--navy-deep);
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+  }
+  .song-add{
+    background: var(--cream-deep);
+    border: 2.5px dashed var(--navy);
+    border-radius: 18px;
+    padding: 1.4rem;
+    text-align: center;
+  }
+  .song-add ol{text-align: left; margin: 0.8rem 0 0 1.2rem; color: var(--ink-soft); font-size: 0.9rem;}
+  .song-uses{display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.7rem; margin-top: 1rem;}
+  .song-use{background: var(--sail-white); border-radius: 12px; padding: 0.85rem 1rem; border-left: 3px solid var(--brass);}
+  .song-use h4{font-size: 0.95rem; margin-bottom: 0.2rem;}
+  .song-use p{font-size: 0.86rem; color: var(--ink-soft); margin: 0;}
+
+  .resource-block{background: var(--cream-deep); padding: 1.5rem 1.7rem; border-radius: 16px; margin: 1rem 0;}
+  .resource-block h3{color: var(--navy); margin-bottom: 0.7rem; border-bottom: 2px solid var(--harbor); padding-bottom: 0.5rem;}
+  .resource-block ul{margin: 0.6rem 0 0 1.2rem; color: var(--ink-soft);}
+  .resource-block ul li{margin-bottom: 0.4rem;}
+
+  .knot-card{
+    background: var(--cream-deep);
+    padding: 1.3rem 1.4rem;
+    border-radius: 14px;
+    border-left: 4px solid var(--rope-tan);
+  }
+  .knot-card h4{font-family: 'Fraunces', serif; font-size: 1.15rem; color: var(--navy-deep); margin-bottom: 0.4rem;}
+  .knot-card .knot-when{font-size: 0.85rem; color: var(--ink-soft); font-style: italic; margin-bottom: 0.5rem;}
+  .knot-card ol{margin-left: 1.2rem; font-size: 0.92rem; color: var(--ink-soft);}
+  .knot-card ol li{margin-bottom: 0.3rem;}
+
+  .pos-clock{background: var(--cream-deep); padding: 1.4rem; border-radius: 18px; margin: 1.2rem 0; text-align: center;}
+  .pos-clock svg{max-width: 480px; width:100%; height:auto;}
+
+  @media print{
+    .tabs{display:none}
+    .panel{display:block !important; page-break-after: always;}
+    body{background: white;}
+  }
+  @media (max-width: 640px){
+    main{padding: 1.25rem 0.85rem 3rem;}
+    .top-banner{padding: 1.5rem 1rem;}
+    .story-page{flex-direction:column; text-align:center; padding: 1.4rem 1.1rem;}
+    .story-page .text{font-size: 1.1rem;}
+  }
+
+/* In-app Suno song manager */
+.user-songs-section { margin: 1rem 0 1.5rem; }
+.add-song-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.85rem 1.6rem;
+  background: linear-gradient(135deg, #4a9c8f, #2d6e63);
+  color: #fff !important;
+  font-weight: 700;
+  font-size: 1rem;
+  font-family: inherit;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+  text-decoration: none;
+}
+.add-song-btn:hover { transform: translateY(-1px); }
+.add-song-btn:active { transform: translateY(1px); }
+.user-songs-empty {
+  margin-top: 0.7rem;
+  font-style: italic;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+}
+.song-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 1rem;
+}
+.song-modal-overlay[hidden] { display: none !important; }
+.song-modal-box {
+  background: var(--cream, #f8f4ea);
+  padding: 1.5rem;
+  border-radius: 18px;
+  max-width: 420px;
+  width: 100%;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+}
+.song-modal-box h3 { margin: 0 0 1rem; }
+.song-modal-label {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0.6rem 0 0.3rem;
+  color: var(--ink-soft, #555);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+.song-modal-box input {
+  width: 100%;
+  padding: 0.7rem 0.8rem;
+  border: 2px solid var(--cream-deep, #ddd);
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 1rem;
+  box-sizing: border-box;
+  background: #fff;
+}
+.song-modal-box input:focus {
+  outline: none;
+  border-color: #888;
+}
+.song-modal-hint {
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  margin: 0.3rem 0 0;
+}
+.song-modal-actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+  margin-top: 1.3rem;
+}
+.song-modal-btn {
+  padding: 0.7rem 1.3rem;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  font-family: inherit;
+  font-size: 0.95rem;
+}
+.song-modal-btn.cancel { background: var(--cream-deep, #eee); color: var(--ink, #333); }
+.song-modal-btn.save  { background: linear-gradient(135deg, #4a9c8f, #2d6e63); color: #fff; }
+.song-card-remove {
+  display: inline-block;
+  margin-top: 0.7rem;
+  font-size: 0.78rem;
+  background: none;
+  border: none;
+  color: var(--ink-soft, #888);
+  cursor: pointer;
+  text-decoration: underline;
+  font-family: inherit;
+  padding: 0;
+}
+.song-card-remove:hover { color: #c73e3a; }
+
+</style>
+</head>
+<body>
+
+<header class="top-banner">
+  <h1>Nicolas's Ocean Pedal Kayaking Playbook <span class="ball-icon"></span></h1>
+  <p class="sub">A picture guide to the kayaks, the wind, the knots, and the joy of the water — for two brothers, on land first, then kayaking.</p>
+</header>
+
+<nav class="tabs" aria-label="Sections">
+  <div class="tab-list" role="tablist">
+    <button class="tab-btn active" data-tab="welcome">🏁 Start Here</button>
+    <button class="tab-btn" data-tab="kayak">⛵ The Boats</button>
+    <button class="tab-btn" data-tab="rules">📋 Rules &amp; Safety</button>
+    <button class="tab-btn" data-tab="skills">🎯 Skills &amp; Moves</button>
+    <button class="tab-btn" data-tab="program">📅 Trip Plans</button>
+    <button class="tab-btn" data-tab="games">🎮 Fun Games</button>
+    <button class="tab-btn" data-tab="story">📖 Kayaking Story</button>
+    <button class="tab-btn" data-tab="songs">🎵 Kayaking Songs</button>
+  </div>
+</nav>
+
+<main>
+
+<!-- WELCOME -->
+<section class="panel active" id="welcome">
+  <div class="section-intro">
+    Welcome, Nicolas. Today you start learning to paddle. You and your brother Alexander — two brothers, one harbor, one big sport you can love your whole life. The plan: <strong>learn it on land first</strong>. Every part of the kayak. The PFD. The weather. The tide. The dock. Then — when you know the words and the parts and the pieces — we go on the water. Kayaking is not about being fast. It's about reading the water, taking care of your kayak, and being a smart paddler. Take your time. Look at the pictures. Watch a video. Practice a skill on the dock.
+  </div>
+
+  <h2>What's inside this playbook</h2>
+  <div class="card-grid" style="margin-top:1.2rem">
+    <div class="card">
+      <div class="card-icon">⛵</div>
+      <h3>The Kayak</h3>
+      <p class="summary">Two boats you'll learn on: the <strong>kayak</strong> (one paddler, small boat — great for solo practice) and the <strong>tandem kayak</strong> (two paddlers, bigger boat — perfect for you and Alexander together). Every part labeled. Every line named.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">📋</div>
+      <h3>Rules &amp; Safety</h3>
+      <p class="summary">10 safety rules that keep paddlers safe. PFDs always. Watch the seat back. Tip over is normal — here's what to do.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🎯</div>
+      <h3>Skills &amp; Moves</h3>
+      <p class="summary">PFD fit. Pedaling. Steering. Stopping. Paddle stroke. Self-rescue. How to read wind and waves.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">📅</div>
+      <h3>Trip Plans</h3>
+      <p class="summary">Four trip formats that roll in over the year — starting with <strong>land only</strong> for the first 6 weeks. 30-min and 60-min versions for Coach and Daddy.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🎮</div>
+      <h3>Fun Games</h3>
+      <p class="summary">Brother games. Buoy-to-buoy races. Treasure hunts. Things to play before, between, and after kayaking.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">📖</div>
+      <h3>Your Kayaking Story</h3>
+      <p class="summary">A picture story about a kayaking day — what to expect, what to do, what to feel. Read it together before the trip.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🎵</div>
+      <h3>Kayaking Songs</h3>
+      <p class="summary">Custom Suno songs made just for you. Listen before a paddle to get ready, or after a great trip to celebrate. Add new ones anytime.</p>
+    </div>
+  </div>
+
+  <div class="pull-quote">
+    The ocean doesn't care if you're new. It just is. Learn to read it, and the ocean will take you anywhere a kayak can go.
+  </div>
+</section>
+
+<!-- THE BOATS -->
+<section class="panel" id="kayak">
+  <div class="section-intro">
+    A pedal kayak is a boat you drive with your FEET — like a bike on the water. There's still a paddle, but the pedal drive does most of the work. Every part has a name and a job.
+  </div>
+
+  <div class="court-wrap">
+    <svg class="court-svg" viewBox="0 0 800 360" xmlns="http://www.w3.org/2000/svg" aria-label="Pedal kayak diagram">
+      <rect x="0" y="0" width="800" height="360" fill="#bce3f0"/>
+      <g stroke="#7fb8d4" stroke-width="1.5" fill="none">
+        <path d="M 0 100 Q 50 95, 100 100 T 200 100 T 300 100 T 400 100 T 500 100 T 600 100 T 700 100 T 800 100"/>
+        <path d="M 0 60 Q 50 55, 100 60 T 200 60 T 300 60 T 400 60 T 500 60 T 600 60 T 700 60 T 800 60"/>
+      </g>
+      <line x1="0" y1="160" x2="800" y2="160" stroke="#4a90b8" stroke-width="2"/>
+      <rect x="0" y="160" width="800" height="200" fill="#4a90b8" opacity="0.5"/>
+
+      <!-- Kayak hull -->
+      <path d="M 100 150 Q 80 175, 100 195 L 700 195 Q 720 175, 700 150 Z" fill="#f5a050" stroke="#a04e26" stroke-width="3"/>
+      <path d="M 250 150 Q 250 130, 290 130 L 510 130 Q 550 130, 550 150" fill="#d68040" stroke="#a04e26" stroke-width="2"/>
+      <rect x="350" y="130" width="100" height="20" rx="6" fill="#3a3a3a"/>
+      <rect x="370" y="100" width="60" height="35" rx="4" fill="#3a3a3a"/>
+
+      <!-- Pedal drive -->
+      <rect x="380" y="195" width="40" height="40" fill="#5a5a5a"/>
+      <path d="M 350 230 Q 380 250, 360 270 L 350 260 Q 365 245, 355 230 Z" fill="#3a3a3a"/>
+      <path d="M 450 230 Q 420 250, 440 270 L 450 260 Q 435 245, 445 230 Z" fill="#3a3a3a"/>
+
+      <!-- Pedals -->
+      <circle cx="345" cy="155" r="8" fill="#c73e3a"/>
+      <circle cx="455" cy="155" r="8" fill="#c73e3a"/>
+
+      <!-- Rudder -->
+      <path d="M 700 195 L 730 230 L 720 240 L 695 200 Z" fill="#3a3a3a"/>
+      <line x1="660" y1="130" x2="690" y2="120" stroke="#5a5a5a" stroke-width="3"/>
+      <circle cx="690" cy="120" r="4" fill="#c73e3a"/>
+
+      <!-- Paddle -->
+      <line x1="200" y1="135" x2="280" y2="125" stroke="#8B5A2B" stroke-width="4"/>
+      <path d="M 195 130 L 200 135 L 195 140 L 185 135 Z" fill="#5a5a5a"/>
+      <circle cx="105" cy="145" r="4" fill="#3a3a3a"/>
+
+      <!-- Labels -->
+      <g font-family="Plus Jakarta Sans, sans-serif" font-size="12" font-weight="700" fill="#1c3a5e">
+        <text x="105" y="115" text-anchor="middle">BOW (front)</text>
+        <text x="695" y="115" text-anchor="middle">STERN (back)</text>
+        <text x="400" y="88" text-anchor="middle">SEAT</text>
+        <text x="200" y="115" text-anchor="middle" font-size="11">PADDLE (backup)</text>
+        <text x="400" y="170" text-anchor="middle" font-size="10" fill="#cc4400">PEDALS</text>
+        <text x="400" y="280" text-anchor="middle" font-size="11">PEDAL DRIVE (fins)</text>
+        <text x="730" y="265" text-anchor="middle" font-size="11">RUDDER</text>
+        <text x="730" y="110" text-anchor="middle" font-size="10">RUDDER CONTROL</text>
+        <text x="400" y="220" text-anchor="middle" font-size="11" fill="#fff" font-weight="700">HULL</text>
+      </g>
+
+      <!-- PFD reminder -->
+      <g transform="translate(680,30)">
+        <rect x="0" y="0" width="80" height="55" rx="5" fill="#f5d547" stroke="#c9a91f" stroke-width="2"/>
+        <text x="40" y="20" text-anchor="middle" font-size="9" font-weight="800" fill="#1c3a5e">⭐ PFD</text>
+        <text x="40" y="33" text-anchor="middle" font-size="8" font-weight="700" fill="#1c3a5e">ALWAYS</text>
+        <text x="40" y="45" text-anchor="middle" font-size="8" fill="#1c3a5e">on the water</text>
+      </g>
+    </svg>
+  </div>
+
+  <h3 style="margin: 1.2rem 0 0.7rem">The parts and what they do</h3>
+  <div class="court-legend">
+    <div class="legend-item"><strong>PFD ⭐</strong> Personal Flotation Device — your life jacket. Coast Guard approved, fits snug, ZIPPED UP. EVERY ride. No exceptions.<span class="cue">"Life jacket first."</span></div>
+    <div class="legend-item"><strong>Bow</strong> The FRONT of the kayak. Pointy end goes first.<span class="cue">"Pointy end forward."</span></div>
+    <div class="legend-item"><strong>Stern</strong> The BACK of the kayak. Where the rudder lives.<span class="cue">"Where you steer from."</span></div>
+    <div class="legend-item"><strong>Hull</strong> The body of the kayak. Sits ON the water. Strong plastic.<span class="cue">"The skin of the kayak."</span></div>
+    <div class="legend-item"><strong>Seat</strong> Adjustable. Should be snug. Back support keeps your spine happy on long rides.<span class="cue">"Snug seat."</span></div>
+    <div class="legend-item"><strong>Pedals</strong> Like bike pedals. PUSH with your feet in cycles. The pedals turn the fins under the kayak.<span class="cue">"Push and pedal."</span></div>
+    <div class="legend-item"><strong>Pedal drive (fins)</strong> Under the kayak. Wag back and forth like a fish's tail. THIS is what pushes you forward.<span class="cue">"Like a fish tail."</span></div>
+    <div class="legend-item"><strong>Rudder</strong> A small fin under the back. Hand control turns it left or right. Steers WITHOUT slowing you down.<span class="cue">"Hand controls direction."</span></div>
+    <div class="legend-item"><strong>Paddle</strong> The backup. Use it when you start, when you stop, in shallow water, or as a brake. Always keep it ON the kayak.<span class="cue">"Backup. Always there."</span></div>
+    <div class="legend-item"><strong>Bow handle</strong> A strap or handle at the front for carrying.<span class="cue">"For carrying."</span></div>
+  </div>
+
+  <h3 style="margin: 2rem 0 0.7rem">Ocean kayaking grows with you</h3>
+  <p style="color:var(--ink-soft); margin-bottom:1rem">Ocean kayaking has stages. Each one opens up new water. There is no rush. Every paddler started on calm water.</p>
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-icon" style="background:linear-gradient(135deg,#4a90b8,#2c6a8d);color:var(--cream)">🌊</div>
+      <h3>Calm Water Stage</h3>
+      <p class="summary"><strong>What you learn here:</strong> getting in and out, sitting balanced, pedaling, steering with the rudder. Sippican Harbor on a still morning. Tandem with Daddy.</p>
+      <span class="cue">"Calm water. Snug PFD."</span>
+    </div>
+    <div class="card">
+      <div class="card-icon" style="background:linear-gradient(135deg,#7fc89c,#4d9b6f);color:var(--cream)">⛵</div>
+      <h3>Harbor Stage</h3>
+      <p class="summary"><strong>What you learn here:</strong> sharing the harbor with kayaks and motorboats. Reading wind and waves. Longer trips. Snack stops on a beach.</p>
+      <span class="cue">"Eyes up, scan the harbor."</span>
+    </div>
+    <div class="card">
+      <div class="card-icon" style="background:linear-gradient(135deg,#f5d547,#c9a91f);color:var(--navy-deep)">🏝️</div>
+      <h3>Bay Stage</h3>
+      <p class="summary"><strong>What you learn here:</strong> small open water (inner Buzzards Bay). Currents and tides. Spotting weather changes. Real trips with goals.</p>
+      <span class="cue">"Plan the trip. Read the bay."</span>
+    </div>
+    <div class="card">
+      <div class="card-icon" style="background:linear-gradient(135deg,#c73e3a,#9c2a26);color:var(--cream)">🌅</div>
+      <h3>Paddler Stage</h3>
+      <p class="summary"><strong>What you learn here:</strong> longer ocean trips. Reading charts. Self-rescue. Paddling with friends. Your kayak takes you to places only paddlers go.</p>
+      <span class="cue">"My boat. My route."</span>
+    </div>
+  </div>
+
+  <h3 style="margin:2rem 0 0.7rem">Watch &amp; learn</h3>
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-icon">🎬</div>
+      <h3>Pedal Kayak for Beginners</h3>
+      <p class="summary">An intro to how pedal kayaks work and how to get started.</p>
+      <a class="video-link" href="https://www.youtube.com/results?search_query=pedal+kayak+for+beginners" target="_blank" rel="noopener">▶ Watch</a>
+    </div>
+    <div class="card">
+      <div class="card-icon">🎬</div>
+      <h3>Kayak Safety for Kids</h3>
+      <p class="summary">PFD fit, water safety basics, and what to do if you tip over.</p>
+      <a class="video-link" href="https://www.youtube.com/results?search_query=kayak+safety+for+kids" target="_blank" rel="noopener">▶ Watch</a>
+    </div>
+  </div>
+</section>
+
+<!-- RULES & SAFETY -->
+<section class="panel" id="rules">
+  <div class="section-intro">
+    Ocean kayaking has clear rules — most of them about safety. The ocean is bigger and stronger than you. The rules keep you safe so you can keep paddling for the rest of your life.
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-icon">⭐</div>
+      <h3>1. PFD on, every time</h3>
+      <p class="summary">Personal Flotation Device. Coast Guard-approved. Zipped up. Snug enough that you can't pull it over your head. EVERY time you get in the kayak. Even at the dock.</p>
+      <span class="cue">"PFD first. Always."</span>
+    </div>
+    <div class="card">
+      <div class="card-icon">🌤️</div>
+      <h3>2. Check the weather BEFORE you go</h3>
+      <p class="summary">Wind forecast (under 10 mph for kids). Wave forecast (under 1 foot). Storm warnings (no go). Marine forecast — not just regular weather.</p>
+      <span class="cue">"Marine forecast first."</span>
+    </div>
+    <div class="card">
+      <div class="card-icon">🗺️</div>
+      <h3>3. Tell someone where you're going</h3>
+      <p class="summary">Before you launch: tell someone on land where you'll go and when you'll be back. This is called a "float plan."</p>
+      <span class="cue">"Float plan to a person."</span>
+    </div>
+    <div class="card">
+      <div class="card-icon">👀</div>
+      <h3>4. Stay near the shore</h3>
+      <p class="summary">At your stage, ALWAYS stay within sight of land. Most rides keep the shore within a few hundred yards. The ocean is BIG.</p>
+      <span class="cue">"Land always in sight."</span>
+    </div>
+    <div class="card">
+      <div class="card-icon">⏰</div>
+      <h3>5. Watch the tide</h3>
+      <p class="summary">Tides go IN and OUT every 6 hours. Paddling AGAINST a strong outgoing tide is tiring. Plan to leave WITH the tide and return WITH the tide.</p>
+      <span class="cue">"Go with the tide."</span>
+    </div>
+    <div class="card">
+      <div class="card-icon">🚤</div>
+      <h3>6. Watch for boats</h3>
+      <p class="summary">Bigger boats can't see you easily. Stay out of channel markers. Look BOTH ways before crossing a channel — like crossing a street.</p>
+      <span class="cue">"Look both ways."</span>
+    </div>
+    <div class="card">
+      <div class="card-icon">🥶</div>
+      <h3>7. Cold water = real danger</h3>
+      <p class="summary">In Massachusetts, ocean water is COLD until July (and after September). Cold water can shock the body fast. Wear a wetsuit or stay out when it's cold.</p>
+      <span class="cue">"Cold = real risk."</span>
+    </div>
+    <div class="card">
+      <div class="card-icon">🛟</div>
+      <h3>8. If you tip — STAY WITH THE KAYAK</h3>
+      <p class="summary">If you fall out, DO NOT swim away. Hold on to the kayak. It floats. The kayak is your best safety device. Wait for help.</p>
+      <span class="cue">"Stay with the kayak."</span>
+    </div>
+    <div class="card">
+      <div class="card-icon">📞</div>
+      <h3>9. Carry a way to call for help</h3>
+      <p class="summary">Phone in a waterproof case. Or a whistle (3 short blasts = SOS). Best to have both.</p>
+      <span class="cue">"Whistle + phone."</span>
+    </div>
+    <div class="card">
+      <div class="card-icon">🤝</div>
+      <h3>10. Be a great paddler</h3>
+      <p class="summary">Wave to other kayakers. Help if someone needs it. Don't paddle close to people's boats or docks. Leave no trash.</p>
+      <span class="cue">"Wave. Help. Leave it clean."</span>
+    </div>
+  </div>
+
+  <div class="pull-quote">
+    The ocean does not care if you're tired. The rules are not to slow you down — they're what let you come back to the water every summer, for the rest of your life.
+  </div>
+</section>
+
+<!-- SKILLS & MOVES -->
+<section class="panel" id="skills">
+  <div class="section-intro">
+    Every move in a kayak has a name and a feel. Some you do with your feet (pedaling), some with your hands (rudder, paddle), some with your whole body (sitting balanced).
+  </div>
+
+  <h3 style="margin-bottom:0.8rem">The 6 essential moves</h3>
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-icon">🦵</div>
+      <h3>Pedaling forward</h3>
+      <p class="summary">Push DOWN on each pedal in alternation, like a bike. Smooth even circles. Don't stomp. Let your legs do the work — not your back.</p>
+      <span class="cue">"Smooth. Even. Steady."</span>
+    </div>
+    <div class="card">
+      <div class="card-icon">↩️</div>
+      <h3>Backing up</h3>
+      <p class="summary">Most pedal drives reverse — pedal BACKWARDS. Or use the paddle: short reverse strokes at the bow.</p>
+      <span class="cue">"Reverse the pedal."</span>
+    </div>
+    <div class="card">
+      <div class="card-icon">🎛️</div>
+      <h3>Steering with rudder</h3>
+      <p class="summary">The hand control turns the rudder. Push the control LEFT to go LEFT. RIGHT to go RIGHT. Gentle moves. Don't over-steer.</p>
+      <span class="cue">"Gentle hand."</span>
+    </div>
+    <div class="card">
+      <div class="card-icon">🛑</div>
+      <h3>Stopping</h3>
+      <p class="summary">Stop pedaling. The kayak will glide. To stop FASTER: use the paddle as a brake (hold it in the water alongside the kayak).</p>
+      <span class="cue">"Glide. Or paddle-brake."</span>
+    </div>
+    <div class="card">
+      <div class="card-icon">⚖️</div>
+      <h3>Sitting balanced</h3>
+      <p class="summary">Sit UPRIGHT, not slouched. Center your weight. If the kayak rocks, MOVE WITH IT — don't fight it. Loose hips, calm breath.</p>
+      <span class="cue">"Loose hips. Calm breath."</span>
+    </div>
+    <div class="card">
+      <div class="card-icon">🚣</div>
+      <h3>Paddle stroke (backup)</h3>
+      <p class="summary">Hold the paddle with hands shoulder-width apart. Reach forward, plant the blade in the water, PULL back along the kayak. Switch sides.</p>
+      <span class="cue">"Reach, plant, pull."</span>
+    </div>
+  </div>
+
+  <h3 style="margin:2rem 0 0.8rem">The PFD Check (every ride)</h3>
+  <div class="card">
+    <p><strong>The 4-Point check:</strong></p>
+    <ul style="margin-left:1.2rem; margin-top:0.5rem">
+      <li><strong>Zipped</strong> — fully zipped to the top.</li>
+      <li><strong>Buckled</strong> — all clips snapped.</li>
+      <li><strong>Snug</strong> — can't pull it over your head when lifted by the shoulders.</li>
+      <li><strong>Fit</strong> — Coast Guard size matches your body weight (label on the inside).</li>
+    </ul>
+    <span class="cue">"Zipped. Buckled. Snug. Fit."</span>
+  </div>
+
+  <h3 style="margin:2rem 0 0.8rem">Getting In and Out (the safe way)</h3>
+  <div class="card">
+    <p><strong>From a beach or dock — the brace method:</strong></p>
+    <ul style="margin-left:1.2rem; margin-top:0.5rem">
+      <li>Kayak in the water, floating, pointed parallel to shore.</li>
+      <li>ONE hand on the seat, ONE on the dock (or sand).</li>
+      <li>Step into the COCKPIT first with the foot closest to the kayak.</li>
+      <li>Lower butt down to the seat SLOWLY.</li>
+      <li>Bring the other foot in. Adjust pedals. Snug PFD. Go.</li>
+    </ul>
+    <span class="cue">"Brace. Step. Sit. Adjust."</span>
+  </div>
+
+  <h3 style="margin:2rem 0 0.8rem">If You Tip Over (the wet exit)</h3>
+  <div class="card">
+    <p><strong>If the kayak flips — DON'T PANIC:</strong></p>
+    <ul style="margin-left:1.2rem; margin-top:0.5rem">
+      <li>Your PFD will bring you to the surface. Breathe.</li>
+      <li>Hold on to the kayak — DO NOT swim away from it.</li>
+      <li>If close to shore: swim the kayak to shore.</li>
+      <li>If far from shore: stay with the kayak, blow your whistle (3 short blasts), wait for help.</li>
+      <li>If you can, try to flip the kayak upright. Climb back in from the SIDE, bracing with both hands.</li>
+    </ul>
+    <span class="cue">"Stay calm. Stay with the kayak."</span>
+  </div>
+</section>
+
+<!-- LESSON PLANS -->
+<section class="panel" id="program">
+  <div class="section-intro">
+    The structure stays the same so you can predict what's coming. The content inside the structure changes so it never gets boring. Four trip formats roll in over the year — starting with <strong>land only</strong> for the first 6 weeks. Each scales to a 60-min trip with Coach or a 30-min practice with Daddy. BYC Junior Kayaking runs in the summer — the rest of the year, the land formats keep you sharp.
+  </div>
+
+  <h2 style="margin-bottom:0.4rem">Why formats, not single-skill weeks</h2>
+  <p style="color:var(--ink-soft); margin-bottom: 1.5rem; font-size:1.02rem">Kayaking has SO many parts. Boat parts. Knots. Wind directions. Maneuvers. If we tried to learn one thing per week, you'd forget the first by the time we got to the fifth. Instead, every practice follows the same shape: warm up → boat check → new skill → practice → game → pack up. The shape is the constant. What goes inside each block is what evolves. Every part you learn this week shows up next week in a different combination — it never disappears.</p>
+  <p style="color:var(--ink-soft); margin-bottom: 1.5rem; font-size:1.02rem">Built-in transitions (PFD check, water break, knot drill on the dock) are <strong>part of the practice</strong>, not interruptions. They reset attention between blocks. Plan for them.</p>
+
+  <h2 style="margin-top:2rem; margin-bottom:0.7rem">The Four Formats</h2>
+  <p style="color:var(--ink-soft);margin-bottom:1.2rem">One format starts. A second is added at week 7. A third at week 27. A fourth at week 40. After each addition, formats <em>rotate</em> — never converge.</p>
+
+  <!-- FORMAT A -->
+  <div class="format-card fmt-A">
+    <div class="format-header">
+      <h3>"Look at this. Let's name it."</h3>
+      <span class="format-pill">FORMAT A · LAND DISCOVERY</span>
+    </div>
+    <p style="margin-bottom:0.7rem"><em>Weeks 1–6 (only format used) · Then in rotation through week 52</em></p>
+    <p>Foundation building. <strong>No water yet.</strong> The first six weeks happen entirely on land — at home, in the yard, in the kayak shed. Touch every part of the kayak. Tie knots. Push the dolly. Watch the wind in the trees. By the time you launch, the kayak will feel like an old friend.</p>
+
+    <div class="format-versions">
+      <div class="version-block">
+        <h4>With Coach <span class="duration">60 min</span></h4>
+        <ul class="block-list">
+          <li><span class="blk-time">8 min</span><div><span class="blk-name">Warm Up</span><span class="blk-desc">Body wake-up + 2 moves from the warm-up menu (e.g., boat walk + knot drill).</span><span class="blk-cue">"Wake up the body."</span></div></li>
+          <li><span class="blk-time">8 min</span><div><span class="blk-name">Boat Touch</span><span class="blk-desc">Walk around the kayak. Touch every part. Name it out loud. Bow, stern, mast, boom...</span><span class="blk-cue">"Touch it. Name it."</span></div></li>
+          <li><span class="blk-time">10 min</span><div><span class="blk-name">New Skill Preview</span><span class="blk-desc">Watched the video at home? Looked at the picture? Now Coach names it, demos it, you try slowly.</span><span class="blk-cue">"Watch. Then try."</span></div></li>
+          <li><span class="blk-time">10 min</span><div><span class="blk-name">Practice with the New Skill</span><span class="blk-desc">Put it into a drill or activity. Getting ready step. Knot speed. Wind detective.</span><span class="blk-cue">"Now use it."</span></div></li>
+          <li><span class="blk-time">10 min</span><div><span class="blk-name">Drill</span><span class="blk-desc">Focused repetition. Coach times you tying a bowline. You build muscle memory.</span><span class="blk-cue">"Reps build it."</span></div></li>
+          <li><span class="blk-time">8 min</span><div><span class="blk-name">Favorite Game</span><span class="blk-desc">End on a high. Pick from the games list.</span><span class="blk-cue">"End on a high."</span></div></li>
+          <li><span class="blk-time">5 min</span><div><span class="blk-name">Pack Up</span><span class="blk-desc">Tools away, water, exit ritual (high-five, "thank you").</span><span class="blk-cue">"Pack up. Water. Thank you."</span></div></li>
+        </ul>
+      </div>
+      <div class="version-block">
+        <h4>With Daddy <span class="duration">30 min</span></h4>
+        <ul class="block-list">
+          <li><span class="blk-time">5 min</span><div><span class="blk-name">Warm Up</span><span class="blk-desc">1 move from the menu.</span><span class="blk-cue">"Wake up the body."</span></div></li>
+          <li><span class="blk-time">6 min</span><div><span class="blk-name">Boat Touch</span><span class="blk-desc">Touch and name 5 parts. Quick.</span><span class="blk-cue">"Touch it. Name it."</span></div></li>
+          <li><span class="blk-time">7 min</span><div><span class="blk-name">Skill</span><span class="blk-desc">Revisit or preview. Quick.</span><span class="blk-cue">"Watch. Then try."</span></div></li>
+          <li><span class="blk-time">7 min</span><div><span class="blk-name">Drill or Game</span><span class="blk-desc">Knot race, parts hunt, or wind check.</span><span class="blk-cue">"Now use it."</span></div></li>
+          <li><span class="blk-time">5 min</span><div><span class="blk-name">Pack Up</span><span class="blk-desc">Tools, water, gear. Same exit ritual.</span><span class="blk-cue">"Pack up. Water. Thank you."</span></div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- FORMAT B -->
+  <div class="format-card fmt-B">
+    <div class="format-header">
+      <h3>"Boat in the water. I'm kayaking."</h3>
+      <span class="format-pill">FORMAT B · DOCK &amp; PADDLE</span>
+    </div>
+    <p style="margin-bottom:0.7rem"><em>Introduced Week 7 · Alternates with A through week 26</em></p>
+    <p>Now the kayak goes in the water. Get it ready. Push it down the ramp. Climb in. Paddle away from the dock. Paddle back. The work happens on land too — getting ready, checking — but now the reward is a real trip on the water. Daddy is in the chase kayak. You're the paddler.</p>
+
+    <div class="format-versions">
+      <div class="version-block">
+        <h4>With Coach <span class="duration">60 min</span></h4>
+        <ul class="block-list">
+          <li><span class="blk-time">8 min</span><div><span class="blk-name">Warm Up</span><span class="blk-desc">2 menu moves. Add a knot speed drill + a wind check on the dock.</span><span class="blk-cue">"Wake up the body."</span></div></li>
+          <li><span class="blk-time">12 min</span><div><span class="blk-name">Rig Up</span><span class="blk-desc">Build the kayak from scratch with Coach. Every step named. PFD on first.</span><span class="blk-cue">"Build the kayak."</span></div></li>
+          <li><span class="blk-time">5 min</span><div><span class="blk-name">Check</span><span class="blk-desc">PFD zipped? Drain plug in? Lines clear? Coach signs off.</span><span class="blk-cue">"Check before launch."</span></div></li>
+          <li><span class="blk-time">20 min</span><div><span class="blk-name">Paddle</span><span class="blk-desc">Launch. Paddle one direction, then back. Daddy in the chase kayak nearby.</span><span class="blk-cue">"This is the best part."</span></div></li>
+          <li><span class="blk-time">10 min</span><div><span class="blk-name">Pack Up</span><span class="blk-desc">Pull kayak up. Rinse. Stash paddle. Strap on the rack. Kayak to bed.</span><span class="blk-cue">"Boat to bed."</span></div></li>
+          <li><span class="blk-time">5 min</span><div><span class="blk-name">Exit Ritual</span><span class="blk-desc">High five. "Good paddle." "Thanks, Daddy."</span><span class="blk-cue">"Pack up. Water. Thank you."</span></div></li>
+        </ul>
+      </div>
+      <div class="version-block">
+        <h4>With Daddy <span class="duration">30 min</span></h4>
+        <ul class="block-list">
+          <li><span class="blk-time">5 min</span><div><span class="blk-name">Warm Up</span><span class="blk-desc">1–2 menu moves + a knot.</span><span class="blk-cue">"Wake up the body."</span></div></li>
+          <li><span class="blk-time">10 min</span><div><span class="blk-name">Rig Practice</span><span class="blk-desc">Get the kayak ready together on the dolly. Practice the steps. Not launching today.</span><span class="blk-cue">"Build the kayak."</span></div></li>
+          <li><span class="blk-time">10 min</span><div><span class="blk-name">Pack Up</span><span class="blk-desc">Rinse with fresh water. Stash paddle. Strap on the rack. Same routine every time.</span><span class="blk-cue">"Boat to bed."</span></div></li>
+          <li><span class="blk-time">5 min</span><div><span class="blk-name">Pack Up</span><span class="blk-desc">Tools, water, gear.</span><span class="blk-cue">"Pack up. Water. Thank you."</span></div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- FORMAT C -->
+  <div class="format-card fmt-C">
+    <div class="format-header">
+      <h3>"I can turn the kayak. I can tip over and get back up."</h3>
+      <span class="format-pill">FORMAT C · OPEN WATER</span>
+    </div>
+    <p style="margin-bottom:0.7rem"><em>Introduced Week 27 · Rotates with A and B through week 39</em></p>
+    <p>Real kayaking skills. Reading wind. Reading waves. Self-rescue. Paddling further from the dock. Daddy gives you specific challenges. You feel the water. You make the kayak go where you want.</p>
+
+    <div class="format-versions">
+      <div class="version-block">
+        <h4>With Coach <span class="duration">60 min</span></h4>
+        <ul class="block-list">
+          <li><span class="blk-time">8 min</span><div><span class="blk-name">Warm Up</span><span class="blk-desc">Menu moves + a few dry-land paddle strokes (no kayak) and a PFD drill.</span><span class="blk-cue">"Wake up the body."</span></div></li>
+          <li><span class="blk-time">8 min</span><div><span class="blk-name">Rig + Brief</span><span class="blk-desc">Get the kayak ready. Daddy previews today's challenge: "Today, 5 clean turns in a row." Walk through it on the dock.</span><span class="blk-cue">"See it. Then paddle it."</span></div></li>
+          <li><span class="blk-time">15 min</span><div><span class="blk-name">Skill Drill</span><span class="blk-desc">Specific drill — turn box (paddle a square), self-rescue practice, reading headings.</span><span class="blk-cue">"One piece at a time."</span></div></li>
+          <li><span class="blk-time">15 min</span><div><span class="blk-name">Open Paddle</span><span class="blk-desc">Apply the skill in a real paddle. Daddy calls course changes. You execute.</span><span class="blk-cue">"Real paddling."</span></div></li>
+          <li><span class="blk-time">8 min</span><div><span class="blk-name">Champion Moment</span><span class="blk-desc">End with a favorite — a smooth glide, a clean turn, a perfect docking.</span><span class="blk-cue">"End on a win."</span></div></li>
+          <li><span class="blk-time">6 min</span><div><span class="blk-name">Pack Up</span><span class="blk-desc">Pack up. Boat to bed.</span><span class="blk-cue">"Boat to bed."</span></div></li>
+        </ul>
+      </div>
+      <div class="version-block">
+        <h4>With Daddy <span class="duration">30 min</span></h4>
+        <ul class="block-list">
+          <li><span class="blk-time">5 min</span><div><span class="blk-name">Warm Up</span><span class="blk-desc">1–2 menu moves + a knot.</span><span class="blk-cue">"Wake up the body."</span></div></li>
+          <li><span class="blk-time">10 min</span><div><span class="blk-name">Skill Review</span><span class="blk-desc">Walk through today's skill on land. Dry-land paddle strokes. PFD drill. Weather check.</span><span class="blk-cue">"One piece at a time."</span></div></li>
+          <li><span class="blk-time">10 min</span><div><span class="blk-name">Watch &amp; Talk</span><span class="blk-desc">Watch a clip of yourself from Coach's trip. Name one thing that went well.</span><span class="blk-cue">"Real paddling."</span></div></li>
+          <li><span class="blk-time">5 min</span><div><span class="blk-name">Pack Up</span><span class="blk-desc">Same exit ritual.</span><span class="blk-cue">"Pack up. Water. Thank you."</span></div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- FORMAT D -->
+  <div class="format-card fmt-D">
+    <div class="format-header">
+      <h3>"I am a paddler. This is my wind."</h3>
+      <span class="format-pill">FORMAT D · PADDLER</span>
+    </div>
+    <p style="margin-bottom:0.7rem"><em>Introduced Week 40 · Rotates with A, B, and C through week 52</em></p>
+    <p>Ownership and reflection. You choose your warm-up moves. You pick one skill you want to refine. You paddle a course you and Daddy set. And at the end, you watch a short clip or name one win and one challenge — the metacognitive frame that real paddlers build.</p>
+
+    <div class="format-versions">
+      <div class="version-block">
+        <h4>With Coach <span class="duration">60 min</span></h4>
+        <ul class="block-list">
+          <li><span class="blk-time">8 min</span><div><span class="blk-name">Warm Up — Your Choice</span><span class="blk-desc">You pick 2 moves from the menu. Call them out.</span><span class="blk-cue">"I pick today."</span></div></li>
+          <li><span class="blk-time">12 min</span><div><span class="blk-name">Technical Tune-Up</span><span class="blk-desc">"What do you want to work on today?" Turning? Balance? Self-rescue? You choose.</span><span class="blk-cue">"Make my best better."</span></div></li>
+          <li><span class="blk-time">12 min</span><div><span class="blk-name">Tactical Challenge</span><span class="blk-desc">A paddle with one specific rule — "every turn under 5 seconds" or "paddle the whole leg without using the rudder hard."</span><span class="blk-cue">"One rule. One paddle."</span></div></li>
+          <li><span class="blk-time">15 min</span><div><span class="blk-name">Course Paddle</span><span class="blk-desc">A short course around two buoys. Maybe a fun race. Real kayaking decisions.</span><span class="blk-cue">"Paddle it real."</span></div></li>
+          <li><span class="blk-time">8 min</span><div><span class="blk-name">Reflect</span><span class="blk-desc">Watch a 30-second clip Coach filmed. Name one win. Name one challenge for next time.</span><span class="blk-cue">"What did I learn?"</span></div></li>
+          <li><span class="blk-time">5 min</span><div><span class="blk-name">Pack Up</span><span class="blk-desc">Same exit ritual.</span><span class="blk-cue">"Pack up. Water. Thank you."</span></div></li>
+        </ul>
+      </div>
+      <div class="version-block">
+        <h4>With Daddy <span class="duration">30 min</span></h4>
+        <ul class="block-list">
+          <li><span class="blk-time">5 min</span><div><span class="blk-name">Warm Up — Choice</span><span class="blk-desc">You pick your moves.</span><span class="blk-cue">"I pick today."</span></div></li>
+          <li><span class="blk-time">10 min</span><div><span class="blk-name">Tune-Up</span><span class="blk-desc">One skill you want to work on (on land or at the dock).</span><span class="blk-cue">"Make my best better."</span></div></li>
+          <li><span class="blk-time">10 min</span><div><span class="blk-name">Watch &amp; Plan</span><span class="blk-desc">Watch your clip from Coach. Plan one thing to try next time.</span><span class="blk-cue">"What did I learn?"</span></div></li>
+          <li><span class="blk-time">5 min</span><div><span class="blk-name">Pack Up</span><span class="blk-desc">Same exit ritual.</span><span class="blk-cue">"Pack up. Water. Thank you."</span></div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- WARM UP MENU -->
+  <h2 style="margin-top:2.5rem; margin-bottom:0.6rem">The Warm-Up Menu</h2>
+  <p style="color:var(--ink-soft); margin-bottom:1.2rem">These are the foundation moves. They never go away. They live in the warm-up of every format, every session — picking 1–3 each time, rotating through. New foundation moves get added; old ones fade and return.</p>
+
+  <div class="warmup-grid">
+    <div class="warmup-item"><h4>⭐ PFD Check</h4><p>Zipped. Buckled. Snug. Right size. Every ride.</p><span class="cue">"Zipped. Buckled. Snug."</span></div>
+    <div class="warmup-item"><h4>🌤️ Marine Forecast Check</h4><p>Wind under 10 mph. Waves under 1 foot. No storms in the next 3 hours. If not — postpone.</p><span class="cue">"Marine forecast first."</span></div>
+    <div class="warmup-item"><h4>🤸 Body Wake-Up</h4><p>Arm circles, leg swings, hip openers, ankle circles. 30 seconds each.</p><span class="cue">"Wake the body."</span></div>
+    <div class="warmup-item"><h4>🛶 Kayak Check</h4><p>Pedals smooth? Rudder moves left and right? Paddle clipped on? Plug in?</p><span class="cue">"Pedals. Rudder. Paddle. Plug."</span></div>
+    <div class="warmup-item"><h4>🚀 Dock Launch Drill</h4><p>Practice the brace-step-sit-adjust sequence ON LAND first. Then in shallow water.</p><span class="cue">"Brace. Step. Sit. Adjust."</span></div>
+    <div class="warmup-item"><h4>🦵 Slow Pedal</h4><p>Pedal at half speed. Smooth circles. Both feet doing equal work.</p><span class="cue">"Smooth. Equal."</span></div>
+    <div class="warmup-item"><h4>↩️ Rudder Practice</h4><p>While pedaling slow, gently push the rudder control left. Then right. Notice how the kayak turns.</p><span class="cue">"Gentle hand."</span></div>
+    <div class="warmup-item"><h4>🐟 Spot Something</h4><p>Look for one thing in the water: a fish, a seagull, a piece of seaweed. Builds eyes-up habit.</p><span class="cue">"Eyes up. See it."</span></div>
+    <div class="warmup-item"><h4>🛑 Stop Practice</h4><p>Pedal forward. Daddy says "STOP!" Stop pedaling. Glide. Then dip the paddle in as a brake.</p><span class="cue">"Stop. Glide. Brake."</span></div>
+    <div class="warmup-item"><h4>📍 Look Around</h4><p>Slowly turn your head all the way left. All the way right. Look behind. Builds situational awareness.</p><span class="cue">"360 view."</span></div>
+  </div>
+
+  <!-- THE 52-WEEK PROGRAM -->
+  <h2 style="margin-top:2.5rem; margin-bottom:0.6rem">The 52-Week Plan</h2>
+  <p style="color:var(--ink-soft); margin-bottom:1rem">A year of kayaking. The format rotates. The skills build. Each week has a focus and a video. Skip ahead if a piece clicks fast. Repeat any week as needed. <strong>BYC Junior Kayaking happens in summer</strong> — phases 2–4 are designed around that. The off-season is for knots, dry-getting ready, and watching the wind in your own backyard.</p>
+
+  <div class="phase-header">
+    <h3>Phase 1 · Discover the Kayak</h3>
+    <p>Format A only. No water yet. Every part, every knot, every wind direction — on land.</p>
+  </div>
+  <div class="week-grid">
+    <div class="week-card fmt-A"><span class="wk-num">Week 1<span class="fmt-pill A">A</span></span><h4>Discover the Kayak</h4><p>Touch each part of the kayak: bow, stern, hull, seat, pedals, rudder, paddle. Name them out loud.</p></div>
+    <div class="week-card fmt-A"><span class="wk-num">Week 2<span class="fmt-pill A">A</span></span><h4>PFD Fitting</h4><p>The 4-point PFD check. Zipped, buckled, snug, right size. Practice until it's second nature.</p></div>
+    <div class="week-card fmt-A"><span class="wk-num">Week 3<span class="fmt-pill A">A</span></span><h4>Getting In &amp; Out</h4><p>The brace-step-sit-adjust sequence. On dry land first. Then very shallow water with Daddy holding the kayak.</p></div>
+    <div class="week-card fmt-A"><span class="wk-num">Week 4<span class="fmt-pill A">A</span></span><h4>Discover Pedaling</h4><p>Smooth even circles with the feet. In a sheltered cove. 50 yards straight in calm water.</p></div>
+    <div class="week-card fmt-A"><span class="wk-num">Week 5<span class="fmt-pill A">A</span></span><h4>Discover Steering</h4><p>The rudder control — gentle moves. Turn in a big lazy circle. Then a smaller one.</p></div>
+    <div class="week-card fmt-A"><span class="wk-num">Week 6<span class="fmt-pill A">A</span></span><h4>Discover Stopping</h4><p>Stop pedaling, glide. Then paddle-brake. Aim to stop at a buoy.</p></div>
+  </div>
+
+  <div class="phase-header">
+    <h3>Phase 2 · Adding Paddling Skills</h3>
+    <p>Formats A &amp; B alternate. Getting the kayak ready. Paddling away from the dock. The first real trips on the water.</p>
+  </div>
+  <div class="week-grid">
+    <div class="week-card fmt-A"><span class="wk-num">Week 7<span class="fmt-pill A">A</span></span><h4>Backing Up</h4><p>Reverse pedaling. Slow and controlled. Practice backing into a dock.</p></div>
+    <div class="week-card fmt-B"><span class="wk-num">Week 8<span class="fmt-pill B">B</span></span><h4>Dock Approach &amp; Departure</h4><p>Pull up to a dock, hold position, push off smoothly. Repeat.</p></div>
+    <div class="week-card fmt-A"><span class="wk-num">Week 9<span class="fmt-pill A">A</span></span><h4>Paddle Stroke</h4><p>Forward paddle stroke. Reach, plant, pull. Hands shoulder-width.</p></div>
+    <div class="week-card fmt-B"><span class="wk-num">Week 10<span class="fmt-pill B">B</span></span><h4>Pedal + Paddle Combo</h4><p>Pedal AND paddle for extra speed. Then paddle alone in shallow water.</p></div>
+    <div class="week-card fmt-A"><span class="wk-num">Week 11<span class="fmt-pill A">A</span></span><h4>Sweep Strokes</h4><p>A wide arcing paddle stroke to turn. Useful when the rudder isn't enough.</p></div>
+    <div class="week-card fmt-B"><span class="wk-num">Week 12<span class="fmt-pill B">B</span></span><h4>Turn Race</h4><p>Two buoys. Pedal around one, sweep-stroke around the other. Time it.</p></div>
+    <div class="week-card fmt-A"><span class="wk-num">Week 13<span class="fmt-pill A">A</span></span><h4>Reading Wind</h4><p>Wind blows your kayak around. Notice which way. Pedal slightly INTO the wind.</p></div>
+    <div class="week-card fmt-B"><span class="wk-num">Week 14<span class="fmt-pill B">B</span></span><h4>Wind Drill</h4><p>Daddy calls wind direction. Paddle on different headings. Notice how each feels.</p></div>
+    <div class="week-card fmt-A"><span class="wk-num">Week 15<span class="fmt-pill A">A</span></span><h4>Reading Waves</h4><p>Waves come from a direction. POINT INTO waves. Sideways = unstable.</p></div>
+    <div class="week-card fmt-B"><span class="wk-num">Week 16<span class="fmt-pill B">B</span></span><h4>Wave Practice</h4><p>In light chop, point the bow at oncoming waves. Notice the stability.</p></div>
+    <div class="week-card fmt-A"><span class="wk-num">Week 17<span class="fmt-pill A">A</span></span><h4>Self-Rescue Basics</h4><p>If you tip, stay with the kayak. Practice "hold and signal" in shallow water with Daddy.</p></div>
+    <div class="week-card fmt-B"><span class="wk-num">Week 18<span class="fmt-pill B">B</span></span><h4>Whistle Drill</h4><p>3 short blasts = SOS. Practice. Make sure whistle is clipped to the PFD.</p></div>
+    <div class="week-card fmt-A"><span class="wk-num">Week 19<span class="fmt-pill A">A</span></span><h4>Reading Tides</h4><p>Outgoing = water flows out. Incoming = in. Plan around them.</p></div>
+    <div class="week-card fmt-B"><span class="wk-num">Week 20<span class="fmt-pill B">B</span></span><h4>Tide Walk</h4><p>Look at a tide chart together. Pick an incoming-tide window. Then go.</p></div>
+    <div class="week-card fmt-A"><span class="wk-num">Week 21<span class="fmt-pill A">A</span></span><h4>Channel Crossing</h4><p>Stop. Look both ways. Cross at 90°. Don't dawdle.</p></div>
+    <div class="week-card fmt-B"><span class="wk-num">Week 22<span class="fmt-pill B">B</span></span><h4>Channel Drill</h4><p>Approach a real channel with Daddy. Practice the look-both-ways routine.</p></div>
+    <div class="week-card fmt-A"><span class="wk-num">Week 23<span class="fmt-pill A">A</span></span><h4>Long-Distance Pace</h4><p>A smooth efficient pace you can hold for an hour. Not too fast.</p></div>
+    <div class="week-card fmt-B"><span class="wk-num">Week 24<span class="fmt-pill B">B</span></span><h4>One-Hour Ride</h4><p>First hour-long paddle. Snack and water at the halfway mark.</p></div>
+    <div class="week-card fmt-A"><span class="wk-num">Week 25<span class="fmt-pill A">A</span></span><h4>Landing on a Beach</h4><p>Approach with bow forward, slow down, ride the last wave in.</p></div>
+    <div class="week-card fmt-B"><span class="wk-num">Week 26<span class="fmt-pill B">B</span></span><h4>Sippican Harbor Tour</h4><p>End-of-phase celebration. Full harbor tour. Land at a beach for lunch.</p></div>
+  </div>
+
+  <div class="phase-header">
+    <h3>Phase 3 · Adding Real Trips</h3>
+    <p>Formats A, B, C rotate. Jibing for real. Kayaking on every point. Tip over is normal now.</p>
+  </div>
+  <div class="week-grid">
+    <div class="week-card fmt-C"><span class="wk-num">Week 27<span class="fmt-pill C">C</span></span><h4>First Real Trip</h4><p>Format C debuts. Plan a route. Pack snacks. Float plan. Go.</p></div>
+    <div class="week-card fmt-A"><span class="wk-num">Week 28<span class="fmt-pill A">A</span></span><h4>Reading the Sky</h4><p>Dark clouds = potential storm. Wind picking up = head back. Trust your gut.</p></div>
+    <div class="week-card fmt-B"><span class="wk-num">Week 29<span class="fmt-pill B">B</span></span><h4>Weather Awareness</h4><p>Point out clouds, wind direction, sun position while paddling.</p></div>
+    <div class="week-card fmt-C"><span class="wk-num">Week 30<span class="fmt-pill C">C</span></span><h4>Buoy-to-Buoy Trip</h4><p>Pick 3 buoys in the harbor. Make a route. Stop at each.</p></div>
+    <div class="week-card fmt-A"><span class="wk-num">Week 31<span class="fmt-pill A">A</span></span><h4>Anchoring</h4><p>How to drop a small anchor to stay in one spot. For snack, swim, fishing.</p></div>
+    <div class="week-card fmt-B"><span class="wk-num">Week 32<span class="fmt-pill B">B</span></span><h4>Drift &amp; Anchor</h4><p>Quiet cove. Drop anchor. Eat lunch. Pull anchor. Continue.</p></div>
+    <div class="week-card fmt-C"><span class="wk-num">Week 33<span class="fmt-pill C">C</span></span><h4>Cove Hopping</h4><p>Visit 3 different beaches/coves in Sippican Harbor. Land at each.</p></div>
+    <div class="week-card fmt-A"><span class="wk-num">Week 34<span class="fmt-pill A">A</span></span><h4>Towing a Friend</h4><p>How to tow another kayak with a tow line clipped to the stern.</p></div>
+    <div class="week-card fmt-B"><span class="wk-num">Week 35<span class="fmt-pill B">B</span></span><h4>Tow Drill</h4><p>Practice towing Daddy's kayak — no distress, just practice.</p></div>
+    <div class="week-card fmt-C"><span class="wk-num">Week 36<span class="fmt-pill C">C</span></span><h4>Sunset Paddle</h4><p>Evening trip. Calm water. Magic light. Back before dark.</p></div>
+    <div class="week-card fmt-A"><span class="wk-num">Week 37<span class="fmt-pill A">A</span></span><h4>Bigger Water Awareness</h4><p>Beyond the harbor: calm forecast, low waves, Daddy along, float plan. Bay-edge only.</p></div>
+    <div class="week-card fmt-B"><span class="wk-num">Week 38<span class="fmt-pill B">B</span></span><h4>Bay-Edge Trip</h4><p>Brief venture beyond the harbor mouth — to the bay edge. Then back.</p></div>
+    <div class="week-card fmt-C"><span class="wk-num">Week 39<span class="fmt-pill C">C</span></span><h4>Buzzards Bay Day</h4><p>End-of-phase celebration. Calm-day trip along the inner Buzzards Bay shore.</p></div>
+  </div>
+
+  <div class="phase-header">
+    <h3>Phase 4 · Becoming a Paddler</h3>
+    <p>All four formats rotate. Course racing. Reflection. The full sport.</p>
+  </div>
+  <div class="week-grid">
+    <div class="week-card fmt-D"><span class="wk-num">Week 40<span class="fmt-pill D">D</span></span><h4>I Plan the Route</h4><p>Format D debuts. Nicolas picks the route. Looks at the chart. Plans the float plan.</p></div>
+    <div class="week-card fmt-A"><span class="wk-num">Week 41<span class="fmt-pill A">A</span></span><h4>Chart Reading Basics</h4><p>Reading a marine chart. Depth marks. Hazards. Channel markers. Buoy numbers.</p></div>
+    <div class="week-card fmt-B"><span class="wk-num">Week 42<span class="fmt-pill B">B</span></span><h4>Chart Walk</h4><p>Spread the chart on the floor. Trace a route. Note hazards.</p></div>
+    <div class="week-card fmt-C"><span class="wk-num">Week 43<span class="fmt-pill C">C</span></span><h4>Multi-Stop Trip</h4><p>3 stops. Chart-planned route. Thermos along. Real trip.</p></div>
+    <div class="week-card fmt-D"><span class="wk-num">Week 44<span class="fmt-pill D">D</span></span><h4>I Lead the Trip</h4><p>Nicolas leads, Daddy follows. Calls hazards. Makes decisions.</p></div>
+    <div class="week-card fmt-A"><span class="wk-num">Week 45<span class="fmt-pill A">A</span></span><h4>Fishing from the Kayak</h4><p>Hands free. Stealth approach. Cast and reel from the seat.</p></div>
+    <div class="week-card fmt-B"><span class="wk-num">Week 46<span class="fmt-pill B">B</span></span><h4>First Fishing Trip</h4><p>Quiet cove. Goal: be on the water with a line, not necessarily catch.</p></div>
+    <div class="week-card fmt-C"><span class="wk-num">Week 47<span class="fmt-pill C">C</span></span><h4>Group Paddle</h4><p>Invite a cousin or friend. Single file. Stay together.</p></div>
+    <div class="week-card fmt-D"><span class="wk-num">Week 48<span class="fmt-pill D">D</span></span><h4>Self-Rescue Practice</h4><p>Warm calm day. Tip on purpose. Get back in. Daddy spotting.</p></div>
+    <div class="week-card fmt-A"><span class="wk-num">Week 49<span class="fmt-pill A">A</span></span><h4>Kayak Camping Concepts</h4><p>How to pack for an overnight. Dry bags. Where to camp.</p></div>
+    <div class="week-card fmt-B"><span class="wk-num">Week 50<span class="fmt-pill B">B</span></span><h4>Pack-and-Paddle</h4><p>Pack the kayak as if for overnight. Paddle a normal route with the extra weight.</p></div>
+    <div class="week-card fmt-C"><span class="wk-num">Week 51<span class="fmt-pill C">C</span></span><h4>Big Day Trip</h4><p>Best trip of the year. Long day on the water. Lunch on a beach.</p></div>
+    <div class="week-card fmt-D"><span class="wk-num">Week 52<span class="fmt-pill D">D</span></span><h4>Kayaking Birthday</h4><p>Year-end. Reflect: 3 favorite trips. Set a goal for Year 2. Celebrate.</p></div>
+  </div>
+</section>
+
+<!-- GAMES -->
+<section class="panel" id="games">
+  <div class="section-intro">
+    Drills get the body strong. Games get the spirit strong. Mix them in every paddle. Some work great solo. Some work better with Daddy nearby. Some are perfect when Alexander joins.
+  </div>
+
+  <div class="card-grid">
+    <div class="card" style="border-color: var(--alert-red); background: linear-gradient(135deg, #fef7e6, var(--cream-deep));">
+      <div class="card-icon" style="background: linear-gradient(135deg, #f5a050, #cc4400)">🚩</div>
+      <h3>Buoy-to-Buoy Race <span style="font-size:0.75rem; background:var(--alert-red-deep, #9c2a26); color:var(--cream); padding:0.15rem 0.5rem; border-radius:999px; font-weight:700; vertical-align:middle; margin-left:0.4rem">CLASSIC</span></h3>
+      <p class="summary">The Sippican Harbor classic. Pick 3 buoys in a triangle. Pedal to each in order, touch (don't crash), pedal to the next. Time it. Beat your time next week.</p>
+      <p style="font-size:0.88rem; color:var(--ink-soft); margin-top:0.6rem"><strong>Why it's perfect for the brothers:</strong> built-in regulation (each buoy is a rest point), no winner-vs-loser (you race the clock), Daddy can be the timer in a chase kayak, and Alexander can pick the triangle one week, Nicolas the next.</p>
+      <span class="cue">"Buoy. Touch. Next."</span>
+    </div>
+    <div class="card">
+      <div class="card-icon">🐢</div>
+      <h3>Slow Race</h3>
+      <p class="summary">LAST to finish wins. Pedal as slowly as you can without stopping. Builds balance and patience.</p>
+      <span class="cue">"Slower is harder."</span>
+    </div>
+    <div class="card">
+      <div class="card-icon">🚧</div>
+      <h3>Paddle Race</h3>
+      <p class="summary">No pedals. Just paddle. 50 yards. Builds the backup skill so it's ready when you need it.</p>
+      <span class="cue">"Reach, plant, pull."</span>
+    </div>
+    <div class="card">
+      <div class="card-icon">🎯</div>
+      <h3>Rudder Slalom</h3>
+      <p class="summary">Set up 5 floating markers (water balloons, lobster buoys). Weave through them using only the rudder. No paddle.</p>
+      <span class="cue">"Gentle hand. Smooth turns."</span>
+    </div>
+    <div class="card">
+      <div class="card-icon">🔄</div>
+      <h3>Cove-to-Cove Relay</h3>
+      <p class="summary">Pick 2 small beaches. Pedal from one to the other. Touch the shore. Come back. Time it.</p>
+      <span class="cue">"Touch the sand."</span>
+    </div>
+    <div class="card">
+      <div class="card-icon">🔍</div>
+      <h3>Treasure Hunt</h3>
+      <p class="summary">Daddy makes a list ("a red buoy, a sea bird, a jellyfish, a moored sailboat"). Pedal around. Find them all.</p>
+      <span class="cue">"Eyes wide. Find them."</span>
+    </div>
+    <div class="card">
+      <div class="card-icon">👂</div>
+      <h3>Echo Game</h3>
+      <p class="summary">Quiet on the water. Listen for one minute. Name every sound: wind, water, boats, birds. Calming.</p>
+      <span class="cue">"Stop. Listen."</span>
+    </div>
+    <div class="card">
+      <div class="card-icon">🎣</div>
+      <h3>Fishing from the Kayak</h3>
+      <p class="summary">Bring a simple rod. Pedal to a quiet spot. Drop a line. The goal is just being out there with a line in the water.</p>
+      <span class="cue">"Quiet hands. Patient line."</span>
+    </div>
+    <div class="card">
+      <div class="card-icon">⛵</div>
+      <h3>Boat Spotter</h3>
+      <p class="summary">Pedal around the harbor. How many different boat types can you name? Sailboat, motorboat, kayak, paddleboard, lobster boat, jet ski.</p>
+      <span class="cue">"Name what you see."</span>
+    </div>
+    <div class="card">
+      <div class="card-icon">🌅</div>
+      <h3>Sunrise / Sunset Quiet Paddle</h3>
+      <p class="summary">No game. No racing. Just paddle slowly in the magic light. Talk OR be quiet. Both are fine.</p>
+      <span class="cue">"Slow. Look around."</span>
+    </div>
+    <div class="card">
+      <div class="card-icon">🚤</div>
+      <h3>Wake Riding (safe)</h3>
+      <p class="summary">When a motorboat goes by FAR away, the waves reach you. Point INTO them. Let the kayak rise and fall. Fun.</p>
+      <span class="cue">"Bow into the wave."</span>
+    </div>
+    <div class="card">
+      <div class="card-icon">🧭</div>
+      <h3>Compass Practice</h3>
+      <p class="summary">Daddy says "Pedal north!" Then "Pedal east!" Use the sun or a compass to find each direction.</p>
+      <span class="cue">"Find north first."</span>
+    </div>
+  </div>
+
+  <h3 style="margin: 2rem 0 0.7rem">Watch fun kayak games in action</h3>
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-icon">🎬</div>
+      <h3>Kid-Friendly Kayak Activities</h3>
+      <p class="summary">Fun on-water games for families.</p>
+      <a class="video-link" href="https://www.youtube.com/results?search_query=kayak+activities+for+kids" target="_blank" rel="noopener">▶ Watch</a>
+    </div>
+    <div class="card">
+      <div class="card-icon">🎬</div>
+      <h3>Pedal Kayak Fishing for Kids</h3>
+      <p class="summary">First fishing trips from a pedal kayak.</p>
+      <a class="video-link" href="https://www.youtube.com/results?search_query=pedal+kayak+fishing+kids" target="_blank" rel="noopener">▶ Watch</a>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:1.5rem; background:var(--cream-deep)">
+    <h3>Make any paddle more fun</h3>
+    <ul style="margin-left:1.2rem; margin-top:0.5rem">
+      <li><strong>Add a story.</strong> "You're exploring an island no one has visited. Map it."</li>
+      <li><strong>Add silly cues.</strong> "Pedal like a sea turtle. Smooth. Steady. Wise."</li>
+      <li><strong>Add a target.</strong> A specific beach, a specific buoy. A goal makes the paddle a journey.</li>
+      <li><strong>Add a snack stop.</strong> Mid-paddle beach landing. Apples taste better on a beach you paddled to.</li>
+      <li><strong>Add a name.</strong> Give the kayak a name. "She" or "he" — the kayak has a personality.</li>
+      <li><strong>Add music or quiet.</strong> Some days music. Some days just water and wind. Both are perfect.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- SOCIAL STORY -->
+<section class="panel" id="story">
+  <div class="section-intro">
+    A picture story about a day at BYC Junior Kayaking. Read it with Mom or Dad before practice. Read it again whenever you want. The pictures show what to expect. The words show what to do.
+  </div>
+
+  <div class="story-book">
+    <div style="text-align:center; margin-bottom:1.5rem">
+      <h2 style="color:var(--navy-deep)">Nicolas Goes Kayaking</h2>
+      <p style="font-style:italic; color:var(--ink-soft)">A story about my day at BYC</p>
+    </div>
+
+    <div class="story-page">
+      <div class="img">⛵</div>
+      <div class="text"><span class="story-num">PAGE 1</span>My name is Nicolas. I am a paddler.</div>
+    </div>
+
+    <div class="story-page">
+      <div class="img">📅</div>
+      <div class="text"><span class="story-num">PAGE 2</span>Today is my kayaking day. I will paddle with Daddy and my brother Alexander.</div>
+    </div>
+
+    <div class="story-page">
+      <div class="img">🎒</div>
+      <div class="text"><span class="story-num">PAGE 3</span>I pack my bag. PFD. Water bottle. Hat. Sunscreen. Towel. I am ready.</div>
+    </div>
+
+    <div class="story-page">
+      <div class="img">🚗</div>
+      <div class="text"><span class="story-num">PAGE 4</span>We drive to BYC. I look at the water. I look at the trees — to see which way the wind is blowing.</div>
+    </div>
+
+    <div class="story-page">
+      <div class="img">🦺</div>
+      <div class="text"><span class="story-num">PAGE 5</span>First thing — PFD on. Zipped. Snug. Coach will check it.</div>
+    </div>
+
+    <div class="story-page">
+      <div class="img">👋</div>
+      <div class="text"><span class="story-num">PAGE 6</span>I see Coach. Coach says "Hi Nicolas!" I can say hi back, or wave, or smile.</div>
+    </div>
+
+    <div class="story-page">
+      <div class="img">🛠️</div>
+      <div class="text"><span class="story-num">PAGE 7</span>We get the kayak ready on the dock. PFD on. Paddle clipped. Pedals checked. I know every part.</div>
+    </div>
+
+    <div class="story-page">
+      <div class="img">🚶</div>
+      <div class="text"><span class="story-num">PAGE 8</span>I push the kayak on the dolly. Walking feet on the dock. Slow and steady.</div>
+    </div>
+
+    <div class="story-page">
+      <div class="img">🌊</div>
+      <div class="text"><span class="story-num">PAGE 9</span>The boat goes in the water. I climb in. The boat moves under me — that is normal. The water is my home now.</div>
+    </div>
+
+    <div class="story-page">
+      <div class="img">🌬️</div>
+      <div class="text"><span class="story-num">PAGE 10</span>I push the pedals. The kayak starts to glide. I am kayaking.</div>
+    </div>
+
+    <div class="story-page">
+      <div class="img">😮‍💨</div>
+      <div class="text"><span class="story-num">PAGE 11</span>If I feel scared — or if water splashes me — I take a deep breath. Coach is right there. I am safe.</div>
+    </div>
+
+    <div class="story-page">
+      <div class="img">💦</div>
+      <div class="text"><span class="story-num">PAGE 12</span>Sometimes the kayak tips over. That is called tip over. It happens to every paddler. I stay with the kayak. I stand on the centerboard. I climb back in.</div>
+    </div>
+
+    <div class="story-page">
+      <div class="img">🏁</div>
+      <div class="text"><span class="story-num">PAGE 13</span>I paddle back to the dock. I touch the dock. I climb out. I did it!</div>
+    </div>
+
+    <div class="story-page">
+      <div class="img">🤝</div>
+      <div class="text"><span class="story-num">PAGE 14</span>We rinse the kayak. Strap it back on the rack. Then high-five Daddy. "Thank you, Daddy!"</div>
+    </div>
+
+    <div class="story-page">
+      <div class="img">🌟</div>
+      <div class="text"><span class="story-num">PAGE 15</span>Kayaking makes me strong. Kayaking makes me brave. Kayaking makes me happy. I am a paddler.</div>
+    </div>
+  </div>
+
+  <div class="pull-quote">
+    Capsizing is part of kayaking. Learning is part of kayaking. Showing up is part of kayaking. You belong on the water.
+  </div>
+</section>
+
+<!-- KAYAKING SONGS -->
+<section class="panel" id="songs">
+  <div class="section-intro">
+    Music is part of paddling. Songs help you preview what's coming, regulate your body between segments, and celebrate the joy of a good day on the water. Each song is made just for you on Suno. Tap to play. Add new ones any time.
+  </div>
+<div class="user-songs-section">
+  <button class="add-song-btn" id="add-song-btn" type="button">+ Add a Suno Song</button>
+  <div id="user-songs-list"></div>
+</div>
+
+
+  <h2 style="margin-bottom:0.4rem">Nicolas's Kayaking Playlist</h2>
+  <p style="color:var(--ink-soft); margin-bottom:1.5rem">Tap any song to listen. Use them before a paddle, between segments, or after a great trip.</p>
+
+  <div class="card-grid">
+    <div class="card song-add">
+      <div class="card-icon" style="background:linear-gradient(135deg, var(--cream), var(--cream-deep)) !important; color:var(--navy); border:2px dashed var(--harbor);">🎵</div>
+      <h3>Make Your First Kayaking Song</h3>
+      <p class="summary" style="text-align:left">Same workflow as the tennis songs. Some ideas:</p>
+      <ol>
+        <li>"PFD On" — a rhythm song for the pre-paddle routine.</li>
+        <li>"Eyes Up, Eyes Far Across the Water" — a song about scanning the harbor.</li>
+        <li>"Pedal Like a Fish" — a song about the rhythm of the pedal drive.</li>
+        <li>"Sippican Harbor" — a song about our home water.</li>
+        <li>"Buzzards Bay Buddies" — a song for when Nicolas and Alexander paddle together.</li>
+      </ol>
+    </div>
+    <div class="card song-add">
+      <div class="card-icon" style="background:linear-gradient(135deg, var(--cream), var(--cream-deep)) !important; color:var(--navy); border:2px dashed var(--harbor);">➕</div>
+      <h3>How to Add a New Song</h3>
+      <p class="summary" style="text-align:left">Tap the green <strong>+ Add a Suno Song</strong> button at the top of this panel. The app will save your songs right on this iPad — they'll be there next time too.</p>
+      <ol>
+        <li>Make the song on Suno together with Nicolas/Alexander.</li>
+        <li>Copy the share link from Suno (the URL of the song page).</li>
+        <li>Tap <strong>+ Add a Suno Song</strong> above.</li>
+        <li>Enter the title, paste the URL, tap Save.</li>
+      </ol>
+    </div>
+  </div>
+
+  <h3 style="margin: 2rem 0 0.7rem">When to use the songs</h3>
+  <div class="song-uses">
+    <div class="song-use">
+      <h4>🎒 On the way to practice</h4>
+      <p>In the car. Builds anticipation. Lets the body get into "kayaking mode" before arrival.</p>
+    </div>
+    <div class="song-use">
+      <h4>🤸 Warm-up block</h4>
+      <p>Play a song while doing menu moves on the dock. The song's length signals when warm-up is done.</p>
+    </div>
+    <div class="song-use">
+      <h4>💧 Between blocks</h4>
+      <p>A 30-second song clip resets attention before moving to the next part of the trip.</p>
+    </div>
+    <div class="song-use">
+      <h4>🏆 Champion moment</h4>
+      <p>End every Format C trip with a song. Pair the song with the win-feeling.</p>
+    </div>
+    <div class="song-use">
+      <h4>😮‍💨 Regulation</h4>
+      <p>If a moment feels hard (cold water, tip over fear, wind too strong), pause and listen to a familiar song.</p>
+    </div>
+    <div class="song-use">
+      <h4>🚗 Drive home</h4>
+      <p>Replay the song on the way home. Pairs the music with the memory of a good paddle.</p>
+    </div>
+  </div>
+
+  <div class="pull-quote">
+    A song is a feeling you can put in your pocket. Paddle plus music plus rhythm plus joy — that is your sport.
+  </div>
+
+  <p style="text-align:center; margin-top:2rem; font-family:'Fraunces',serif; font-style:italic; color:var(--ink-soft)">— Built with love for Nicolas —</p>
+</section>
+
+
+<div class="song-modal-overlay" id="song-modal" hidden>
+  <div class="song-modal-box" role="dialog" aria-modal="true" aria-labelledby="song-modal-title">
+    <h3 id="song-modal-title">Add a Suno Song</h3>
+    <label class="song-modal-label" for="song-title-input">Song Title</label>
+    <input type="text" id="song-title-input" placeholder="e.g. Hype Song" autocomplete="off">
+    <label class="song-modal-label" for="song-url-input">Suno URL</label>
+    <input type="url" id="song-url-input" placeholder="https://suno.com/s/...">
+    <p class="song-modal-hint">Paste the share link from Suno (the URL of the song page).</p>
+    <div class="song-modal-actions">
+      <button class="song-modal-btn cancel" id="song-modal-cancel" type="button">Cancel</button>
+      <button class="song-modal-btn save"   id="song-modal-save"   type="button">Save</button>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<script>
+  const tabs = document.querySelectorAll('.tab-btn');
+  const panels = document.querySelectorAll('.panel');
+  tabs.forEach(t => {
+    t.addEventListener('click', () => {
+      tabs.forEach(x => x.classList.remove('active'));
+      panels.forEach(x => x.classList.remove('active'));
+      t.classList.add('active');
+      const id = t.dataset.tab;
+      document.getElementById(id).classList.add('active');
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    });
+  });
+</script>
+
+<script>
+(function() {
+  var STORAGE_KEY = 'songs-kayak-nicolas';
+  var GRADIENT = 'linear-gradient(135deg, #4a9c8f, #2d6e63)';
+
+  function getSongs() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); }
+    catch(e) { return []; }
+  }
+  function saveSongs(songs) {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(songs)); return true; }
+    catch(e) { alert('Could not save. Storage may be full or unavailable.'); return false; }
+  }
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, function(c) {
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+  function render() {
+    var container = document.getElementById('user-songs-list');
+    if (!container) return;
+    var songs = getSongs();
+    if (!songs.length) {
+      container.innerHTML = '<p class="user-songs-empty">No songs yet — tap "Add a Suno Song" to add your first one.</p>';
+      return;
+    }
+    var html = '<h3 style="margin-top:1.4rem; margin-bottom:0.6rem">Your Songs</h3>';
+    html += '<div class="card-grid">';
+    songs.forEach(function(s) {
+      html += '<div class="card song-card">';
+      html += '<div class="card-icon" style="background:' + GRADIENT + '; color:#fff">🎵</div>';
+      html += '<h3>' + esc(s.title) + '</h3>';
+      html += '<a class="play-button" href="' + esc(s.url) + '" target="_blank" rel="noopener"><span class="icon">▶</span> Play on Suno</a>';
+      html += '<button class="song-card-remove" data-id="' + esc(String(s.id)) + '" type="button">× Remove</button>';
+      html += '</div>';
+    });
+    html += '</div>';
+    container.innerHTML = html;
+    Array.prototype.forEach.call(container.querySelectorAll('.song-card-remove'), function(btn) {
+      btn.addEventListener('click', function() {
+        var id = btn.getAttribute('data-id');
+        var song = getSongs().filter(function(s) { return String(s.id) === id; })[0];
+        if (song && confirm('Remove "' + song.title + '"?')) {
+          saveSongs(getSongs().filter(function(s) { return String(s.id) !== id; }));
+          render();
+        }
+      });
+    });
+  }
+  function show() {
+    document.getElementById('song-title-input').value = '';
+    document.getElementById('song-url-input').value = '';
+    document.getElementById('song-modal').hidden = false;
+    setTimeout(function() {
+      var t = document.getElementById('song-title-input');
+      if (t) t.focus();
+    }, 50);
+  }
+  function hide() {
+    document.getElementById('song-modal').hidden = true;
+  }
+  function save() {
+    var title = document.getElementById('song-title-input').value.trim();
+    var url = document.getElementById('song-url-input').value.trim();
+    if (!title) { alert('Please enter a song title.'); return; }
+    if (!url) { alert('Please paste a Suno URL.'); return; }
+    if (!/^https?:\/\//i.test(url)) { alert('URL must start with http:// or https://'); return; }
+    var songs = getSongs();
+    songs.push({ id: Date.now(), title: title, url: url });
+    if (saveSongs(songs)) { hide(); render(); }
+  }
+  function init() {
+    var b = document.getElementById('add-song-btn'); if (b) b.addEventListener('click', show);
+    var c = document.getElementById('song-modal-cancel'); if (c) c.addEventListener('click', hide);
+    var s = document.getElementById('song-modal-save'); if (s) s.addEventListener('click', save);
+    var m = document.getElementById('song-modal');
+    if (m) m.addEventListener('click', function(e) { if (e.target === m) hide(); });
+    render();
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else { init(); }
+})();
+</script>
+
+</body>
+</html>
