@@ -642,27 +642,243 @@
 }
 .song-card-remove:hover { color: #c73e3a; }
 
+
+/* ===== iPad / iOS scroll & touch fixes ===== */
+html {
+  -webkit-text-size-adjust: 100%;
+  height: 100%;
+}
+body {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
+}
+/* Prevent horizontal-scroll on tab nav from capturing vertical scroll */
+nav.tabs {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  touch-action: pan-x;
+}
+/* Make sticky nav less aggressive on small screens / iPads */
+@media (max-width: 900px) {
+  nav.tabs {
+    position: relative !important;
+    top: auto !important;
+  }
+}
+/* Bigger tap targets on tab buttons */
+.tab-btn {
+  min-height: 48px;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+/* Ensure modal/overlay never blocks scroll once closed (legacy) */
+[hidden] { display: none !important; }
+/* Disable user-select on tab buttons to prevent text selection on long tap */
+.tab-btn { -webkit-user-select: none; user-select: none; }
+
+
+/* ===== Song manager (inline form, iPad-friendly) ===== */
+.song-add-inline {
+  background: linear-gradient(135deg, var(--cream-deep, #f0eada), #fff);
+  border: 2px solid var(--brass, #c9a91f);
+  border-radius: 18px;
+  padding: 1.2rem 1.1rem;
+  margin: 1rem 0 1.5rem;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+}
+.song-add-inline h3 { margin: 0 0 0.75rem; font-size: 1.15rem; }
+.song-add-inline-row { display: flex; flex-direction: column; gap: 0.55rem; margin-bottom: 0.6rem; }
+.song-add-inline label {
+  font-weight: 700;
+  color: var(--ink, #2c2818);
+  font-size: 0.95rem;
+}
+.song-add-inline input {
+  width: 100%;
+  padding: 0.9rem 0.85rem;
+  font-size: 17px; /* prevents iOS zoom-in on focus */
+  font-family: inherit;
+  border: 2px solid var(--ink-soft, #6b6754);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--ink, #2c2818);
+  -webkit-appearance: none;
+  appearance: none;
+  box-sizing: border-box;
+  min-height: 48px;
+}
+.song-add-inline input:focus {
+  outline: none;
+  border-color: var(--brass, #c9a91f);
+  box-shadow: 0 0 0 3px rgba(201,169,31,0.18);
+}
+.song-add-inline-btn {
+  background: linear-gradient(135deg, #4a9c8f, #2d6e63);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 0.95rem 1.4rem;
+  font-size: 17px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  min-height: 50px;
+  width: 100%;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+.song-add-inline-btn:active { transform: translateY(1px); }
+.song-add-inline-status {
+  margin-top: 0.6rem;
+  font-size: 0.92rem;
+  min-height: 1.4em;
+  padding: 0.4rem 0;
+  font-weight: 600;
+}
+.song-add-inline-status.success { color: #2d6e63; }
+.song-add-inline-status.error { color: #c73e3a; }
+
+/* Song cards in user list */
+.user-songs-empty {
+  text-align: center;
+  color: var(--ink-soft, #6b6754);
+  font-style: italic;
+  padding: 1rem;
+}
+.song-card-play {
+  display: inline-block;
+  background: linear-gradient(135deg, #4a9c8f, #2d6e63);
+  color: #fff;
+  text-decoration: none;
+  padding: 0.85rem 1.2rem;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 16px;
+  margin-top: 0.4rem;
+  min-height: 48px;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  width: auto;
+  text-align: center;
+}
+.song-card-play:active { transform: translateY(1px); }
+.song-card-remove {
+  display: block;
+  margin-top: 0.6rem;
+  background: transparent;
+  color: var(--ink-soft, #6b6754);
+  border: 1.5px solid var(--ink-soft, #6b6754);
+  border-radius: 10px;
+  padding: 0.55rem 0.95rem;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  min-height: 40px;
+  -webkit-tap-highlight-color: transparent;
+}
+.song-card-remove:active { transform: translateY(1px); }
+
+/* Hide old modal (we replace it but leave the markup safe) */
+.song-modal-overlay { display: none !important; }
+
+
+.sail-icon, .ball-icon, .kayak-icon, .sport-icon { display: none !important; }
+
+/* ===== Universal nav + fade gradient (consistency across all playbooks) ===== */
+nav.tabs {
+  position: relative;
+  background: var(--cream-deep, #f0eada);
+  border-bottom: 3px solid var(--navy, #1c3a5e);
+  z-index: 10;
+  /* Wrap container for fade gradient */
+}
+.tabs-scroll-container {
+  position: relative;
+  overflow: hidden;
+}
+.tabs-scroll-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 40px;
+  pointer-events: none;
+  background: linear-gradient(to right, transparent, var(--cream-deep, #f0eada));
+  z-index: 2;
+}
+nav.tabs .tabs-inner {
+  display: flex;
+  gap: 0.4rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  scroll-behavior: smooth;
+  padding: 0.5rem 0.4rem;
+  scrollbar-width: thin;
+}
+nav.tabs .tabs-inner::-webkit-scrollbar { height: 4px; }
+nav.tabs .tabs-inner::-webkit-scrollbar-track { background: transparent; }
+nav.tabs .tabs-inner::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.15); border-radius: 2px;
+}
+
+/* Standardize tab button look across all apps */
+.tab-btn {
+  flex-shrink: 0;
+  background: transparent;
+  border: none;
+  color: var(--ink, #2c2818);
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 0.7rem 1rem;
+  border-radius: 999px;
+  cursor: pointer;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 44px;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  transition: background 0.15s ease;
+}
+.tab-btn:hover { background: rgba(0,0,0,0.04); }
+.tab-btn.active {
+  background: var(--navy, #1c3a5e);
+  color: var(--cream, #f8f4ea);
+}
 </style>
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<link rel="manifest" href="manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="mobile-web-app-capable" content="yes">
 </head>
 <body>
 
 <header class="top-banner">
-  <h1>Nicolas's Ocean Pedal Kayaking Playbook <span class="ball-icon"></span></h1>
-  <p class="sub">A picture guide to the kayaks, the wind, the knots, and the joy of the water — for two brothers, on land first, then kayaking.</p>
+  <h1>Nicolas's Ocean Pedal Kayaking Playbook</h1>
+  <p class="sub">A picture guide to the kayak, the water, the rules, and the joy of the ride.</p>
 </header>
 
-<nav class="tabs" aria-label="Sections">
+<nav class="tabs"><div class="tabs-scroll-container"><div class="tabs-inner">
   <div class="tab-list" role="tablist">
     <button class="tab-btn active" data-tab="welcome">🏁 Start Here</button>
-    <button class="tab-btn" data-tab="kayak">⛵ The Boats</button>
+    <button class="tab-btn" data-tab="kayak">🛶 The Kayak</button>
     <button class="tab-btn" data-tab="rules">📋 Rules &amp; Safety</button>
     <button class="tab-btn" data-tab="skills">🎯 Skills &amp; Moves</button>
-    <button class="tab-btn" data-tab="program">📅 Trip Plans</button>
+    <button class="tab-btn" data-tab="program">📅 Lesson Plans</button>
     <button class="tab-btn" data-tab="games">🎮 Fun Games</button>
     <button class="tab-btn" data-tab="story">📖 Kayaking Story</button>
     <button class="tab-btn" data-tab="songs">🎵 Kayaking Songs</button>
   </div>
-</nav>
+</div></div></nav>
 
 <main>
 
@@ -672,44 +888,44 @@
     Welcome, Nicolas. Today you start learning to paddle. You and your brother Alexander — two brothers, one harbor, one big sport you can love your whole life. The plan: <strong>learn it on land first</strong>. Every part of the kayak. The PFD. The weather. The tide. The dock. Then — when you know the words and the parts and the pieces — we go on the water. Kayaking is not about being fast. It's about reading the water, taking care of your kayak, and being a smart paddler. Take your time. Look at the pictures. Watch a video. Practice a skill on the dock.
   </div>
 
-  <h2>What's inside this playbook</h2>
-  <div class="card-grid" style="margin-top:1.2rem">
-    <div class="card">
-      <div class="card-icon">⛵</div>
-      <h3>The Kayak</h3>
-      <p class="summary">Two boats you'll learn on: the <strong>kayak</strong> (one paddler, small boat — great for solo practice) and the <strong>tandem kayak</strong> (two paddlers, bigger boat — perfect for you and Alexander together). Every part labeled. Every line named.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">📋</div>
-      <h3>Rules &amp; Safety</h3>
-      <p class="summary">10 safety rules that keep paddlers safe. PFDs always. Watch the seat back. Tip over is normal — here's what to do.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">🎯</div>
-      <h3>Skills &amp; Moves</h3>
-      <p class="summary">PFD fit. Pedaling. Steering. Stopping. Paddle stroke. Self-rescue. How to read wind and waves.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">📅</div>
-      <h3>Trip Plans</h3>
-      <p class="summary">Four trip formats that roll in over the year — starting with <strong>land only</strong> for the first 6 weeks. 30-min and 60-min versions for Coach and Daddy.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">🎮</div>
-      <h3>Fun Games</h3>
-      <p class="summary">Brother games. Buoy-to-buoy races. Treasure hunts. Things to play before, between, and after kayaking.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">📖</div>
-      <h3>Your Kayaking Story</h3>
-      <p class="summary">A picture story about a kayaking day — what to expect, what to do, what to feel. Read it together before the trip.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">🎵</div>
-      <h3>Kayaking Songs</h3>
-      <p class="summary">Custom Suno songs made just for you. Listen before a paddle to get ready, or after a great trip to celebrate. Add new ones anytime.</p>
-    </div>
+  <h2 style="margin: 2rem 0 1.2rem">What's inside this playbook</h2>
+<div class="card-grid welcome-cards-grid">
+  <div class="card">
+    <div class="card-icon" style="background: linear-gradient(135deg, var(--navy, #1c3a5e), var(--navy-deep, #0f2444)); color: var(--cream, #f8f4ea)">🛶</div>
+    <h3>The Kayak</h3>
+    <p class="summary">A picture map of a pedal kayak — bow, stern, pedals, rudder, paddle. Every part labeled.</p>
   </div>
+  <div class="card">
+    <div class="card-icon" style="background: linear-gradient(135deg, var(--navy, #1c3a5e), var(--navy-deep, #0f2444)); color: var(--cream, #f8f4ea)">📋</div>
+    <h3>Rules &amp; Safety</h3>
+    <p class="summary">10 ocean safety rules. PFD always. Check the marine forecast. Stay near shore. Watch the tide. The basics that keep you safe.</p>
+  </div>
+  <div class="card">
+    <div class="card-icon" style="background: linear-gradient(135deg, var(--navy, #1c3a5e), var(--navy-deep, #0f2444)); color: var(--cream, #f8f4ea)">🎯</div>
+    <h3>Skills &amp; Moves</h3>
+    <p class="summary">Pedaling. Steering with the rudder. Stopping. The paddle stroke. Self-rescue. The moves every paddler knows.</p>
+  </div>
+  <div class="card">
+    <div class="card-icon" style="background: linear-gradient(135deg, var(--navy, #1c3a5e), var(--navy-deep, #0f2444)); color: var(--cream, #f8f4ea)">📅</div>
+    <h3>Lesson Plans</h3>
+    <p class="summary">Four lesson formats. From calm-water basics in Sippican Harbor to real trips along the bay.</p>
+  </div>
+  <div class="card">
+    <div class="card-icon" style="background: linear-gradient(135deg, var(--navy, #1c3a5e), var(--navy-deep, #0f2444)); color: var(--cream, #f8f4ea)">🎮</div>
+    <h3>Fun Games</h3>
+    <p class="summary">Brother games. Buoy-to-buoy race. Treasure hunt. Things to play on the water.</p>
+  </div>
+  <div class="card">
+    <div class="card-icon" style="background: linear-gradient(135deg, var(--navy, #1c3a5e), var(--navy-deep, #0f2444)); color: var(--cream, #f8f4ea)">📖</div>
+    <h3>Your Ocean Pedal Kayaking Story</h3>
+    <p class="summary">A picture story about a kayaking day — what to expect, what to do, what to feel.</p>
+  </div>
+  <div class="card">
+    <div class="card-icon" style="background: linear-gradient(135deg, var(--navy, #1c3a5e), var(--navy-deep, #0f2444)); color: var(--cream, #f8f4ea)">🎵</div>
+    <h3>Ocean Pedal Kayaking Songs</h3>
+    <p class="summary">Custom Suno songs made just for you. Listen before a paddle to get ready, or after a great trip on the water.</p>
+  </div>
+</div>
 
   <div class="pull-quote">
     The ocean doesn't care if you're new. It just is. Learn to read it, and the ocean will take you anywhere a kayak can go.
@@ -852,65 +1068,112 @@
       <h3>1. PFD on, every time</h3>
       <p class="summary">Personal Flotation Device. Coast Guard-approved. Zipped up. Snug enough that you can't pull it over your head. EVERY time you get in the kayak. Even at the dock.</p>
       <span class="cue">"PFD first. Always."</span>
+    
+      <a class="video-link" href="https://www.youtube.com/results?search_query=pfd+on+every+time+kayak" target="_blank" rel="noopener">▶ Watch</a>
     </div>
     <div class="card">
       <div class="card-icon">🌤️</div>
       <h3>2. Check the weather BEFORE you go</h3>
       <p class="summary">Wind forecast (under 10 mph for kids). Wave forecast (under 1 foot). Storm warnings (no go). Marine forecast — not just regular weather.</p>
       <span class="cue">"Marine forecast first."</span>
+    
+      <a class="video-link" href="https://www.youtube.com/results?search_query=check+the+weather+before+you+go+kayak" target="_blank" rel="noopener">▶ Watch</a>
     </div>
     <div class="card">
       <div class="card-icon">🗺️</div>
       <h3>3. Tell someone where you're going</h3>
       <p class="summary">Before you launch: tell someone on land where you'll go and when you'll be back. This is called a "float plan."</p>
       <span class="cue">"Float plan to a person."</span>
+    
+      <a class="video-link" href="https://www.youtube.com/results?search_query=tell+someone+where+youre+going+kayak" target="_blank" rel="noopener">▶ Watch</a>
     </div>
     <div class="card">
       <div class="card-icon">👀</div>
       <h3>4. Stay near the shore</h3>
       <p class="summary">At your stage, ALWAYS stay within sight of land. Most rides keep the shore within a few hundred yards. The ocean is BIG.</p>
       <span class="cue">"Land always in sight."</span>
+    
+      <a class="video-link" href="https://www.youtube.com/results?search_query=stay+near+the+shore+kayak" target="_blank" rel="noopener">▶ Watch</a>
     </div>
     <div class="card">
       <div class="card-icon">⏰</div>
       <h3>5. Watch the tide</h3>
       <p class="summary">Tides go IN and OUT every 6 hours. Paddling AGAINST a strong outgoing tide is tiring. Plan to leave WITH the tide and return WITH the tide.</p>
       <span class="cue">"Go with the tide."</span>
+    
+      <a class="video-link" href="https://www.youtube.com/results?search_query=watch+the+tide+kayak" target="_blank" rel="noopener">▶ Watch</a>
     </div>
     <div class="card">
       <div class="card-icon">🚤</div>
       <h3>6. Watch for boats</h3>
       <p class="summary">Bigger boats can't see you easily. Stay out of channel markers. Look BOTH ways before crossing a channel — like crossing a street.</p>
       <span class="cue">"Look both ways."</span>
+    
+      <a class="video-link" href="https://www.youtube.com/results?search_query=watch+for+boats+kayak" target="_blank" rel="noopener">▶ Watch</a>
     </div>
     <div class="card">
       <div class="card-icon">🥶</div>
       <h3>7. Cold water = real danger</h3>
       <p class="summary">In Massachusetts, ocean water is COLD until July (and after September). Cold water can shock the body fast. Wear a wetsuit or stay out when it's cold.</p>
       <span class="cue">"Cold = real risk."</span>
+    
+      <a class="video-link" href="https://www.youtube.com/results?search_query=cold+water+real+danger+kayak" target="_blank" rel="noopener">▶ Watch</a>
     </div>
     <div class="card">
       <div class="card-icon">🛟</div>
       <h3>8. If you tip — STAY WITH THE KAYAK</h3>
       <p class="summary">If you fall out, DO NOT swim away. Hold on to the kayak. It floats. The kayak is your best safety device. Wait for help.</p>
       <span class="cue">"Stay with the kayak."</span>
+    
+      <a class="video-link" href="https://www.youtube.com/results?search_query=if+you+tip+stay+with+the+kayak+kayak" target="_blank" rel="noopener">▶ Watch</a>
     </div>
     <div class="card">
       <div class="card-icon">📞</div>
       <h3>9. Carry a way to call for help</h3>
       <p class="summary">Phone in a waterproof case. Or a whistle (3 short blasts = SOS). Best to have both.</p>
       <span class="cue">"Whistle + phone."</span>
+    
+      <a class="video-link" href="https://www.youtube.com/results?search_query=carry+a+way+to+call+for+help+kayak" target="_blank" rel="noopener">▶ Watch</a>
     </div>
     <div class="card">
       <div class="card-icon">🤝</div>
       <h3>10. Be a great paddler</h3>
       <p class="summary">Wave to other kayakers. Help if someone needs it. Don't paddle close to people's boats or docks. Leave no trash.</p>
       <span class="cue">"Wave. Help. Leave it clean."</span>
+    
+      <a class="video-link" href="https://www.youtube.com/results?search_query=be+a+great+paddler+kayak" target="_blank" rel="noopener">▶ Watch</a>
     </div>
-  </div>
+  
+      <a class="video-link" href="https://www.youtube.com/results?search_query=kayak+pfd+rules+safety" target="_blank" rel="noopener">▶ Watch</a>
+    </div>
 
   <div class="pull-quote">
     The ocean does not care if you're tired. The rules are not to slow you down — they're what let you come back to the water every summer, for the rest of your life.
+  </div>
+
+  <h3 style="margin: 2.5rem 0 0.8rem">Watch &amp; learn the rules</h3>
+  <p style="color:var(--ink-soft); margin-bottom:1rem">Short videos that explain how the game is played. Watch a couple before your first session.</p>
+  <div class="card-grid">
+  <div class="card">
+    <div class="card-icon">🎬</div>
+    <h3>Ocean Kayak Safety</h3>
+    <a class="video-link" href="https://www.youtube.com/results?search_query=ocean+kayak+safety+basics" target="_blank" rel="noopener">▶ Watch</a>
+  </div>
+  <div class="card">
+    <div class="card-icon">🎬</div>
+    <h3>Pedal Kayak Tutorial</h3>
+    <a class="video-link" href="https://www.youtube.com/results?search_query=hobie+pedal+kayak+tutorial+beginner" target="_blank" rel="noopener">▶ Watch</a>
+  </div>
+  <div class="card">
+    <div class="card-icon">🎬</div>
+    <h3>Reading Marine Forecast</h3>
+    <a class="video-link" href="https://www.youtube.com/results?search_query=reading+marine+weather+forecast+tutorial" target="_blank" rel="noopener">▶ Watch</a>
+  </div>
+  <div class="card">
+    <div class="card-icon">🎬</div>
+    <h3>Tides for Paddlers</h3>
+    <a class="video-link" href="https://www.youtube.com/results?search_query=understanding+tides+kayak+paddling" target="_blank" rel="noopener">▶ Watch</a>
+  </div>
   </div>
 </section>
 
@@ -927,38 +1190,52 @@
       <h3>Pedaling forward</h3>
       <p class="summary">Push DOWN on each pedal in alternation, like a bike. Smooth even circles. Don't stomp. Let your legs do the work — not your back.</p>
       <span class="cue">"Smooth. Even. Steady."</span>
+    
+      <a class="video-link" href="https://www.youtube.com/results?search_query=pedaling+forward+kayak" target="_blank" rel="noopener">▶ Watch</a>
     </div>
     <div class="card">
       <div class="card-icon">↩️</div>
       <h3>Backing up</h3>
       <p class="summary">Most pedal drives reverse — pedal BACKWARDS. Or use the paddle: short reverse strokes at the bow.</p>
       <span class="cue">"Reverse the pedal."</span>
+    
+      <a class="video-link" href="https://www.youtube.com/results?search_query=backing+up+kayak" target="_blank" rel="noopener">▶ Watch</a>
     </div>
     <div class="card">
       <div class="card-icon">🎛️</div>
       <h3>Steering with rudder</h3>
       <p class="summary">The hand control turns the rudder. Push the control LEFT to go LEFT. RIGHT to go RIGHT. Gentle moves. Don't over-steer.</p>
       <span class="cue">"Gentle hand."</span>
+    
+      <a class="video-link" href="https://www.youtube.com/results?search_query=steering+with+rudder+kayak" target="_blank" rel="noopener">▶ Watch</a>
     </div>
     <div class="card">
       <div class="card-icon">🛑</div>
       <h3>Stopping</h3>
       <p class="summary">Stop pedaling. The kayak will glide. To stop FASTER: use the paddle as a brake (hold it in the water alongside the kayak).</p>
       <span class="cue">"Glide. Or paddle-brake."</span>
+    
+      <a class="video-link" href="https://www.youtube.com/results?search_query=stopping+kayak" target="_blank" rel="noopener">▶ Watch</a>
     </div>
     <div class="card">
       <div class="card-icon">⚖️</div>
       <h3>Sitting balanced</h3>
       <p class="summary">Sit UPRIGHT, not slouched. Center your weight. If the kayak rocks, MOVE WITH IT — don't fight it. Loose hips, calm breath.</p>
       <span class="cue">"Loose hips. Calm breath."</span>
+    
+      <a class="video-link" href="https://www.youtube.com/results?search_query=sitting+balanced+kayak" target="_blank" rel="noopener">▶ Watch</a>
     </div>
     <div class="card">
       <div class="card-icon">🚣</div>
       <h3>Paddle stroke (backup)</h3>
       <p class="summary">Hold the paddle with hands shoulder-width apart. Reach forward, plant the blade in the water, PULL back along the kayak. Switch sides.</p>
       <span class="cue">"Reach, plant, pull."</span>
+    
+      <a class="video-link" href="https://www.youtube.com/results?search_query=paddle+stroke+backup+kayak" target="_blank" rel="noopener">▶ Watch</a>
     </div>
-  </div>
+  
+      <a class="video-link" href="https://www.youtube.com/results?search_query=pedal+kayak+pedaling+tutorial" target="_blank" rel="noopener">▶ Watch</a>
+    </div>
 
   <h3 style="margin:2rem 0 0.8rem">The PFD Check (every ride)</h3>
   <div class="card">
@@ -1267,68 +1544,92 @@
       <h3>Slow Race</h3>
       <p class="summary">LAST to finish wins. Pedal as slowly as you can without stopping. Builds balance and patience.</p>
       <span class="cue">"Slower is harder."</span>
+    
+      <a class="video-link" href="https://www.youtube.com/results?search_query=slow+race+kayak" target="_blank" rel="noopener">▶ Watch</a>
     </div>
     <div class="card">
       <div class="card-icon">🚧</div>
       <h3>Paddle Race</h3>
       <p class="summary">No pedals. Just paddle. 50 yards. Builds the backup skill so it's ready when you need it.</p>
       <span class="cue">"Reach, plant, pull."</span>
+    
+      <a class="video-link" href="https://www.youtube.com/results?search_query=paddle+race+kayak" target="_blank" rel="noopener">▶ Watch</a>
     </div>
     <div class="card">
       <div class="card-icon">🎯</div>
       <h3>Rudder Slalom</h3>
       <p class="summary">Set up 5 floating markers (water balloons, lobster buoys). Weave through them using only the rudder. No paddle.</p>
       <span class="cue">"Gentle hand. Smooth turns."</span>
+    
+      <a class="video-link" href="https://www.youtube.com/results?search_query=rudder+slalom+kayak" target="_blank" rel="noopener">▶ Watch</a>
     </div>
     <div class="card">
       <div class="card-icon">🔄</div>
       <h3>Cove-to-Cove Relay</h3>
       <p class="summary">Pick 2 small beaches. Pedal from one to the other. Touch the shore. Come back. Time it.</p>
       <span class="cue">"Touch the sand."</span>
+    
+      <a class="video-link" href="https://www.youtube.com/results?search_query=covetocove+relay+kayak" target="_blank" rel="noopener">▶ Watch</a>
     </div>
     <div class="card">
       <div class="card-icon">🔍</div>
       <h3>Treasure Hunt</h3>
       <p class="summary">Daddy makes a list ("a red buoy, a sea bird, a jellyfish, a moored sailboat"). Pedal around. Find them all.</p>
       <span class="cue">"Eyes wide. Find them."</span>
+    
+      <a class="video-link" href="https://www.youtube.com/results?search_query=treasure+hunt+kayak" target="_blank" rel="noopener">▶ Watch</a>
     </div>
     <div class="card">
       <div class="card-icon">👂</div>
       <h3>Echo Game</h3>
       <p class="summary">Quiet on the water. Listen for one minute. Name every sound: wind, water, boats, birds. Calming.</p>
       <span class="cue">"Stop. Listen."</span>
+    
+      <a class="video-link" href="https://www.youtube.com/results?search_query=echo+game+kayak" target="_blank" rel="noopener">▶ Watch</a>
     </div>
     <div class="card">
       <div class="card-icon">🎣</div>
       <h3>Fishing from the Kayak</h3>
       <p class="summary">Bring a simple rod. Pedal to a quiet spot. Drop a line. The goal is just being out there with a line in the water.</p>
       <span class="cue">"Quiet hands. Patient line."</span>
+    
+      <a class="video-link" href="https://www.youtube.com/results?search_query=fishing+from+the+kayak+kayak" target="_blank" rel="noopener">▶ Watch</a>
     </div>
     <div class="card">
       <div class="card-icon">⛵</div>
       <h3>Boat Spotter</h3>
       <p class="summary">Pedal around the harbor. How many different boat types can you name? Sailboat, motorboat, kayak, paddleboard, lobster boat, jet ski.</p>
       <span class="cue">"Name what you see."</span>
+    
+      <a class="video-link" href="https://www.youtube.com/results?search_query=boat+spotter+kayak" target="_blank" rel="noopener">▶ Watch</a>
     </div>
     <div class="card">
       <div class="card-icon">🌅</div>
       <h3>Sunrise / Sunset Quiet Paddle</h3>
       <p class="summary">No game. No racing. Just paddle slowly in the magic light. Talk OR be quiet. Both are fine.</p>
       <span class="cue">"Slow. Look around."</span>
+    
+      <a class="video-link" href="https://www.youtube.com/results?search_query=sunrise+sunset+quiet+paddle+kayak" target="_blank" rel="noopener">▶ Watch</a>
     </div>
     <div class="card">
       <div class="card-icon">🚤</div>
       <h3>Wake Riding (safe)</h3>
       <p class="summary">When a motorboat goes by FAR away, the waves reach you. Point INTO them. Let the kayak rise and fall. Fun.</p>
       <span class="cue">"Bow into the wave."</span>
+    
+      <a class="video-link" href="https://www.youtube.com/results?search_query=wake+riding+safe+kayak" target="_blank" rel="noopener">▶ Watch</a>
     </div>
     <div class="card">
       <div class="card-icon">🧭</div>
       <h3>Compass Practice</h3>
       <p class="summary">Daddy says "Pedal north!" Then "Pedal east!" Use the sun or a compass to find each direction.</p>
       <span class="cue">"Find north first."</span>
+    
+      <a class="video-link" href="https://www.youtube.com/results?search_query=compass+practice+kayak" target="_blank" rel="noopener">▶ Watch</a>
     </div>
-  </div>
+  
+      <a class="video-link" href="https://www.youtube.com/results?search_query=kayak+slow+race+fun+game" target="_blank" rel="noopener">▶ Watch</a>
+    </div>
 
   <h3 style="margin: 2rem 0 0.7rem">Watch fun kayak games in action</h3>
   <div class="card-grid">
@@ -1356,7 +1657,9 @@
       <li><strong>Add a name.</strong> Give the kayak a name. "She" or "he" — the kayak has a personality.</li>
       <li><strong>Add music or quiet.</strong> Some days music. Some days just water and wind. Both are perfect.</li>
     </ul>
-  </div>
+  
+      <a class="video-link" href="https://www.youtube.com/results?search_query=make+any+paddle+more+fun+kayak" target="_blank" rel="noopener">▶ Watch</a>
+    </div>
 </section>
 
 <!-- SOCIAL STORY -->
@@ -1458,8 +1761,27 @@
     Music is part of paddling. Songs help you preview what's coming, regulate your body between segments, and celebrate the joy of a good day on the water. Each song is made just for you on Suno. Tap to play. Add new ones any time.
   </div>
 <div class="user-songs-section">
-  <button class="add-song-btn" id="add-song-btn" type="button">+ Add a Suno Song</button>
-  <div id="user-songs-list"></div>
+  
+<div class="card song-add-inline" id="song-add-inline">
+  <h3>🎵 Add a Suno Song</h3>
+  <p style="margin: 0 0 0.85rem; color: var(--ink-soft, #6b6754); font-size: 0.95rem;">
+    Made a song on Suno? Paste the share link here so it lives in your playlist forever.
+  </p>
+  <div class="song-add-inline-row">
+    <label for="song-title-input">Song Title</label>
+    <input type="text" id="song-title-input" placeholder="e.g. My Hype Song" autocomplete="off" autocapitalize="words" />
+  </div>
+  <div class="song-add-inline-row">
+    <label for="song-url-input">Suno URL</label>
+    <input type="url" id="song-url-input" placeholder="https://suno.com/s/..." autocomplete="off" autocapitalize="none" inputmode="url" />
+  </div>
+  <button class="song-add-inline-btn" id="song-add-inline-btn" type="button">Add to Playlist</button>
+  <div class="song-add-inline-status" id="song-add-status" role="status" aria-live="polite"></div>
+</div>
+<div id="user-songs-list"></div>
+
+
+  
 </div>
 
 
@@ -1528,21 +1850,6 @@
 </section>
 
 
-<div class="song-modal-overlay" id="song-modal" hidden>
-  <div class="song-modal-box" role="dialog" aria-modal="true" aria-labelledby="song-modal-title">
-    <h3 id="song-modal-title">Add a Suno Song</h3>
-    <label class="song-modal-label" for="song-title-input">Song Title</label>
-    <input type="text" id="song-title-input" placeholder="e.g. Hype Song" autocomplete="off">
-    <label class="song-modal-label" for="song-url-input">Suno URL</label>
-    <input type="url" id="song-url-input" placeholder="https://suno.com/s/...">
-    <p class="song-modal-hint">Paste the share link from Suno (the URL of the song page).</p>
-    <div class="song-modal-actions">
-      <button class="song-modal-btn cancel" id="song-modal-cancel" type="button">Cancel</button>
-      <button class="song-modal-btn save"   id="song-modal-save"   type="button">Save</button>
-    </div>
-  </div>
-</div>
-
 </main>
 
 <script>
@@ -1561,7 +1868,9 @@
 </script>
 
 <script>
-(function() {
+(function(){
+  // === Robust Suno song manager ===
+  // Inline form (no modal), works in PWA standalone mode on iPad.
   var STORAGE_KEY = 'songs-kayak-nicolas';
   var GRADIENT = 'linear-gradient(135deg, #4a9c8f, #2d6e63)';
 
@@ -1571,33 +1880,47 @@
   }
   function saveSongs(songs) {
     try { localStorage.setItem(STORAGE_KEY, JSON.stringify(songs)); return true; }
-    catch(e) { alert('Could not save. Storage may be full or unavailable.'); return false; }
+    catch(e) { return false; }
   }
   function esc(s) {
     return String(s).replace(/[&<>"']/g, function(c) {
       return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
     });
   }
+  function openSong(url) {
+    // Works in PWA standalone mode on iOS too
+    try {
+      var w = window.open(url, '_blank', 'noopener');
+      if (!w || w.closed || typeof w.closed === 'undefined') {
+        window.location.href = url;
+      }
+    } catch(e) {
+      window.location.href = url;
+    }
+  }
   function render() {
     var container = document.getElementById('user-songs-list');
     if (!container) return;
     var songs = getSongs();
     if (!songs.length) {
-      container.innerHTML = '<p class="user-songs-empty">No songs yet — tap "Add a Suno Song" to add your first one.</p>';
+      container.innerHTML = '<p class="user-songs-empty">No songs added yet — paste a Suno link above to add your first one.</p>';
       return;
     }
-    var html = '<h3 style="margin-top:1.4rem; margin-bottom:0.6rem">Your Songs</h3>';
-    html += '<div class="card-grid">';
+    var h = '<h3 style="margin-top:1.4rem; margin-bottom:0.6rem">Your Songs</h3>';
+    h += '<div class="card-grid">';
     songs.forEach(function(s) {
-      html += '<div class="card song-card">';
-      html += '<div class="card-icon" style="background:' + GRADIENT + '; color:#fff">🎵</div>';
-      html += '<h3>' + esc(s.title) + '</h3>';
-      html += '<a class="play-button" href="' + esc(s.url) + '" target="_blank" rel="noopener"><span class="icon">▶</span> Play on Suno</a>';
-      html += '<button class="song-card-remove" data-id="' + esc(String(s.id)) + '" type="button">× Remove</button>';
-      html += '</div>';
+      h += '<div class="card song-card">';
+      h += '<div class="card-icon" style="background:' + GRADIENT + '; color:#fff">🎵</div>';
+      h += '<h3>' + esc(s.title) + '</h3>';
+      h += '<button class="song-card-play" data-url="' + esc(s.url) + '" type="button">▶ Play on Suno</button>';
+      h += '<button class="song-card-remove" data-id="' + esc(String(s.id)) + '" type="button">× Remove</button>';
+      h += '</div>';
     });
-    html += '</div>';
-    container.innerHTML = html;
+    h += '</div>';
+    container.innerHTML = h;
+    Array.prototype.forEach.call(container.querySelectorAll('.song-card-play'), function(btn) {
+      btn.addEventListener('click', function() { openSong(btn.getAttribute('data-url')); });
+    });
     Array.prototype.forEach.call(container.querySelectorAll('.song-card-remove'), function(btn) {
       btn.addEventListener('click', function() {
         var id = btn.getAttribute('data-id');
@@ -1609,39 +1932,66 @@
       });
     });
   }
-  function show() {
-    document.getElementById('song-title-input').value = '';
-    document.getElementById('song-url-input').value = '';
-    document.getElementById('song-modal').hidden = false;
-    setTimeout(function() {
-      var t = document.getElementById('song-title-input');
-      if (t) t.focus();
-    }, 50);
+  function setStatus(msg, kind) {
+    var el = document.getElementById('song-add-status');
+    if (!el) return;
+    el.textContent = msg;
+    el.className = 'song-add-inline-status ' + (kind || '');
+    if (kind === 'success') {
+      setTimeout(function(){
+        if (el.textContent === msg) { el.textContent = ''; el.className = 'song-add-inline-status'; }
+      }, 3500);
+    }
   }
-  function hide() {
-    document.getElementById('song-modal').hidden = true;
-  }
-  function save() {
-    var title = document.getElementById('song-title-input').value.trim();
-    var url = document.getElementById('song-url-input').value.trim();
-    if (!title) { alert('Please enter a song title.'); return; }
-    if (!url) { alert('Please paste a Suno URL.'); return; }
-    if (!/^https?:\/\//i.test(url)) { alert('URL must start with http:// or https://'); return; }
+  function addSong() {
+    var titleEl = document.getElementById('song-title-input');
+    var urlEl = document.getElementById('song-url-input');
+    var title = (titleEl.value || '').trim();
+    var url = (urlEl.value || '').trim();
+    if (!title) { setStatus('Please add a song title.', 'error'); titleEl.focus(); return; }
+    if (!url) { setStatus('Please paste the Suno URL.', 'error'); urlEl.focus(); return; }
+    if (!/^https?:\/\//i.test(url)) { setStatus('URL must start with https://', 'error'); urlEl.focus(); return; }
     var songs = getSongs();
     songs.push({ id: Date.now(), title: title, url: url });
-    if (saveSongs(songs)) { hide(); render(); }
-  }
-  function init() {
-    var b = document.getElementById('add-song-btn'); if (b) b.addEventListener('click', show);
-    var c = document.getElementById('song-modal-cancel'); if (c) c.addEventListener('click', hide);
-    var s = document.getElementById('song-modal-save'); if (s) s.addEventListener('click', save);
-    var m = document.getElementById('song-modal');
-    if (m) m.addEventListener('click', function(e) { if (e.target === m) hide(); });
+    if (!saveSongs(songs)) { setStatus('Could not save (storage may be full).', 'error'); return; }
+    titleEl.value = ''; urlEl.value = '';
+    setStatus('✓ Added "' + title + '" to your playlist.', 'success');
     render();
   }
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else { init(); }
+  function init() {
+    var btn = document.getElementById('song-add-inline-btn');
+    if (btn) btn.addEventListener('click', addSong);
+    var urlEl = document.getElementById('song-url-input');
+    if (urlEl) {
+      urlEl.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') { e.preventDefault(); addSong(); }
+      });
+    }
+    render();
+  }
+  if (document.readyState !== 'loading') init();
+  else document.addEventListener('DOMContentLoaded', init);
+})();
+</script>
+
+
+<script>
+(function(){
+  function scrollActiveIntoView() {
+    var active = document.querySelector('nav.tabs .tab-btn.active');
+    if (active && active.scrollIntoView) {
+      try { active.scrollIntoView({behavior: 'smooth', block: 'nearest', inline: 'center'}); }
+      catch(e) {}
+    }
+  }
+  document.addEventListener('click', function(e) {
+    if (e.target.closest('.tab-btn')) {
+      setTimeout(scrollActiveIntoView, 50);
+    }
+  });
+  // On load: scroll active tab into view
+  if (document.readyState !== 'loading') scrollActiveIntoView();
+  else document.addEventListener('DOMContentLoaded', scrollActiveIntoView);
 })();
 </script>
 

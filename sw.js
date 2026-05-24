@@ -1,4 +1,4 @@
-const CACHE_NAME = 'nicolas-kayak-v1';
+const CACHE_NAME = 'nicolas-kayak-v4';
 const APP_SHELL = ['./','./index.html','./manifest.json','./icon-192.png','./icon-512.png',
   'https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap'];
 self.addEventListener('install', e => e.waitUntil(caches.open(CACHE_NAME).then(c => Promise.all(APP_SHELL.map(u => c.add(u).catch(()=>{})))).then(() => self.skipWaiting())));
